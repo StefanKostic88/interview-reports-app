@@ -5,3 +5,5 @@ export { default as CustomInput } from "./ui/CustomInput/CustomInput";
 export { default as MainHeader } from "./MainHeader/MainHeader";
 export { default as MainContainer } from "./MainContainer/MainContainer";
 export { default as Footer } from "./Footer/Footer";
+export { default as SearchHeader } from "./SearchHeader/SearchHeader";
+export { default as CardsContainer } from "./CardsContainer/CardsContainer";
