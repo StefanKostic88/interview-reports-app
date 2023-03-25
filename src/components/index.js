@@ -7,3 +7,6 @@ export { default as MainContainer } from "./MainContainer/MainContainer";
 export { default as Footer } from "./Footer/Footer";
 export { default as SearchHeader } from "./SearchHeader/SearchHeader";
 export { default as CardsContainer } from "./CardsContainer/CardsContainer";
+export { default as ErrorModal } from "./ui/ErrorModal/ErrorModal";
+export { default as LoaderModal } from "./ui/LoaderModal/LoaderModal";
+export { default as AppContainer } from "./ui/AppContainer/AppContainer";
