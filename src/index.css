@@ -352,14 +352,16 @@ img {
   height: 4rem;
 }
 .contact__form-input {
-  position: absolute;
+  /* position: absolute; */
   top: 0;
   left: 0;
-  width: 100%;
+  /* width: 100%; */
   height: 100%;
   border: 2px solid var(--text-color-light);
-  border-radius: 2rem;
-  padding: 1.5rem;
+  /* border-radius: 2rem; */
+  border-radius: 0.5rem;
+  /* padding: 1.5rem; */
+  padding: 1rem;
   font-size: var(--normal-font-size);
   font-family: var(--title-font);
   color: var(--title-color);
