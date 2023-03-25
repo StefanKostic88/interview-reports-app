@@ -17,7 +17,7 @@ for (let i = 0; i < 9; i++) {
 // ));
 
 const CardsContainer = () => {
-  return <div>{nineCards}</div>;
+  // return <div>{nineCards}</div>;
 };
 
 export default CardsContainer;

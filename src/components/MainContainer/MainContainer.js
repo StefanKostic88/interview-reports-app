@@ -1,5 +1,5 @@
 const MainContainer = ({ children }) => {
-  console.log(children);
+  // console.log(children);
   return (
     <main
       style={{
