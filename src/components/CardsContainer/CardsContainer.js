@@ -1,5 +1,5 @@
 import CardItem from "./CardItem/CardItem";
-
+import "./CardsContainer.css";
 const nineCards = [];
 
 for (let i = 0; i < 9; i++) {
@@ -12,17 +12,13 @@ for (let i = 0; i < 9; i++) {
 //   </div>
 // ));
 
-const CardsContainer = () => {
+const CardsContainer = ({ candidatesList }) => {
+  if (!candidatesList) return;
   return (
-    <div
-      className="grid"
-      style={{
-        gridTemplateColumns: "repeat(3, max-content)",
-        justifyContent: "center",
-        padding: "2rem 0",
-      }}
-    >
-      {nineCards}
+    <div className="container section grid card__list" id="card-list">
+      {candidatesList.map((candidate) => (
+        <CardItem key={candidate.id} {...candidate} />
+      ))}
     </div>
   );
 };
