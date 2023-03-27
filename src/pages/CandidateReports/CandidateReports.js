@@ -1,15 +1,14 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router";
-import { MainContainer } from "../../components";
+import {
+  MainContainer,
+  CandidateReportsInfo,
+  CandidateReportsTable,
+} from "../../components";
 import {
   fetchCandidateData,
   fetchCompaniesData,
 } from "../../services/fetchData/fehtchData";
-
-import {
-  CandidateReportsInfo,
-  CandidateReportsTable,
-} from "../CandidateReports";
 
 import "./CandidateReports.css";
 
