@@ -1,28 +1,12 @@
 import CardItem from "./CardItem/CardItem";
 
-const nineCards = [];
-
-for (let i = 0; i < 9; i++) {
-  nineCards.push(<CardItem key={i} />);
-}
-
-// nineCards.map((card) => (
-//   <div key={i}>
-//     <CardItem />
-//   </div>
-// ));
-
-const CardsContainer = () => {
+const CardsContainer = ({ candidatesList }) => {
+  if (!candidatesList) return;
   return (
-    <div
-      className="grid"
-      style={{
-        gridTemplateColumns: "repeat(3, max-content)",
-        justifyContent: "center",
-        padding: "2rem 0",
-      }}
-    >
-      {nineCards}
+    <div className="container section grid card__list" id="card-list">
+      {candidatesList.map((candidate) => (
+        <CardItem key={candidate.id} {...candidate} />
+      ))}
     </div>
   );
 };

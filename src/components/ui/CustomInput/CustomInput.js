@@ -1,10 +1,13 @@
-const CustomInput = ({ type, placeholder, value, onChange }) => {
+const CustomInput = ({ type, placeholder, value, onChange, name }) => {
   return (
     <input
-      className="contact__form-input"
+      className="search__form-input"
+      id="contact-name"
       type={type}
-      placeholder={placeholder}
+      name={name}
       value={value}
+      required
+      placeholder={placeholder}
       onChange={onChange}
     />
   );

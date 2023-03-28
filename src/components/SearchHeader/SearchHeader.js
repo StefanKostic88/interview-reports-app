@@ -1,44 +1,28 @@
 import { useState } from "react";
-import { MdSearch, MdClose } from "react-icons/md";
 import CustomInput from "../ui/CustomInput/CustomInput";
-const SearchHeader = () => {
-  const [searchUser, setSearchUser] = useState("");
 
+const SearchHeader = ({ onFilterCandidate }) => {
+  const [searchUser, setSearchUser] = useState("");
   const onChangeHandler = (e) => {
     setSearchUser(() => e.target.value);
-    //set search value
-    //send value to app
-    //filter(e.target.value)
-    //filter users in app component
+    onFilterCandidate(e.target.value);
   };
-
-  const onClickHandler = () => {
-    //clear inputs
-    setSearchUser(() => "");
-    //sends empty value to App
-    //render landing page data
-  };
-
   return (
-    <div
-      style={{
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "space-between",
-        gap: "2rem",
-      }}
-    >
-      <h2>Candidates</h2>
-      <span>
-        <MdSearch />
-        <CustomInput
-          type="text"
-          placeholder="Search"
-          value={searchUser}
-          onChange={onChangeHandler}
-        />
-        <MdClose onClick={onClickHandler} />
-      </span>
+    <div className="home">
+      <h1 className="section__title">Candidates</h1>
+      <form action="" className="search__form" id="contact-form">
+        <div className="search__form-div">
+          <label className="search__form-tag">Search</label>
+          <CustomInput
+            type="text"
+            name="user_name"
+            required
+            placeholder="Search..."
+            value={searchUser}
+            onChange={onChangeHandler}
+          />
+        </div>
+      </form>
     </div>
   );
 };
