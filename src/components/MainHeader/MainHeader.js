@@ -1,5 +1,4 @@
 import { Link } from "react-router-dom";
-import "./MainHeader.css";
 
 const MainHeader = () => {
   return (
@@ -14,6 +13,7 @@ const MainHeader = () => {
           <Link to={"/"} className="btn-alt">
             Candidates
           </Link>
+          <Link to={"/"}>Panels</Link>
         </div>
       </nav>
     </header>

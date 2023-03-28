@@ -1,16 +1,4 @@
 import CardItem from "./CardItem/CardItem";
-import "./CardsContainer.css";
-const nineCards = [];
-
-for (let i = 0; i < 9; i++) {
-  nineCards.push(<CardItem key={i} />);
-}
-
-// nineCards.map((card) => (
-//   <div key={i}>
-//     <CardItem />
-//   </div>
-// ));
 
 const CardsContainer = ({ candidatesList }) => {
   if (!candidatesList) return;

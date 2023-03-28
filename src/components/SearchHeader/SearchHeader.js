@@ -1,6 +1,6 @@
 import { useState } from "react";
 import CustomInput from "../ui/CustomInput/CustomInput";
-import "./SearchHeader.css";
+
 const SearchHeader = ({ onFilterCandidate }) => {
   const [searchUser, setSearchUser] = useState("");
   const onChangeHandler = (e) => {

@@ -1,4 +1,4 @@
 const Overlay = () => {
-  return <div className="overlay hidden"></div>;
+  return <div className="overlay "></div>;
 };
 export default Overlay;

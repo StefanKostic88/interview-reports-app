@@ -1,12 +1,11 @@
 import React from "react";
 import CandidateReportsTableBody from "./CandidateReportsTableBody/CandidateReportsTableBody";
 
-const CandidateReportsTable = ({ companies }) => {
-  console.log();
+const CandidateReportsTable = ({ companies, onGetModalInfo }) => {
   return (
     <section className="table container section hscroll">
       <table className="table">
-        <thead>
+        <tbody>
           <th>
             <span>
               <img
@@ -37,8 +36,11 @@ const CandidateReportsTable = ({ companies }) => {
               Status
             </span>
           </th>
-        </thead>
-        <CandidateReportsTableBody companies={companies} />
+        </tbody>
+        <CandidateReportsTableBody
+          companies={companies}
+          onGetModalInfo={onGetModalInfo}
+        />
       </table>
     </section>
   );

@@ -12,3 +12,4 @@ export { default as LoaderModal } from "./ui/LoaderModal/LoaderModal";
 export { default as AppContainer } from "./ui/AppContainer/AppContainer";
 export { default as CandidateReportsInfo } from "./CandidateReportsInfo/CandidateReportsInfo";
 export { default as CandidateReportsTable } from "./CandidateReportsTable/CandidateReportsTable";
+export { default as CandidateReportsModalWindow } from "./CandidateReportsModalWindow/CandidateReportsModalWindow";

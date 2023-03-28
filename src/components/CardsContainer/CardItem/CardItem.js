@@ -1,5 +1,4 @@
 import { useNavigate } from "react-router";
-import "./CardItem.css";
 
 const CardItem = ({ id, email, name, avatar }) => {
   const navigate = useNavigate();
