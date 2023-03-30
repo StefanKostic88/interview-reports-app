@@ -16,19 +16,19 @@ import {
 } from "../../services/fetchData/fehtchData";
 
 const AdministrativePanel = () => {
-  const [reports, setReports] = useState(null);
+  // const [reports, setReports] = useState(null);
 
-  useEffect(() => {
-    const getReportsData = async () => {
-      const data = await fetchReportsData();
+  // useEffect(() => {
+  //   const getReportsData = async () => {
+  //     const data = await fetchReportsData();
 
-      setReports(() => [...data]);
-    };
+  //     setReports(() => [...data]);
+  //   };
 
-    getReportsData();
-  }, []);
+  //   getReportsData();
+  // }, []);
 
-  if (!reports) return <div>Loading...</div>;
+  // if (!reports) return <div>Loading...</div>;
 
   return (
     <MainContainer>
@@ -55,7 +55,9 @@ const AdministrativePanel = () => {
           <OperationTwo />
           <OperationThree />
         </AdminstrativePanelOperations> */}
-        <AdministrativePanelList reportsData={reports} />
+        {/* <AdministrativePanelList reportsData={reports} /> */}
+
+        <Outlet />
       </section>
     </MainContainer>
   );
