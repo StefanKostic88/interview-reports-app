@@ -43,3 +43,19 @@ export const generateCompanyData = ({
   phase,
   status,
 });
+
+export const generatePanelLIstInfo = ({
+  candidateName,
+  candidateId,
+  interviewDate,
+  status,
+  companyName,
+  companyId,
+}) => ({
+  candidateName,
+  candidateId,
+  interviewDate: convertDate(interviewDate),
+  status,
+  companyName,
+  companyId,
+});

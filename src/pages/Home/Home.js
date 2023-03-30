@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { MainContainer, SearchHeader, CardsContainer } from "../../components";
-// import "./Home.css";
 
 const Home = ({ candidatesList }) => {
   const [filteredUsers, setFilteredUsers] = useState(null);

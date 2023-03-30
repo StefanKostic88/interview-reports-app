@@ -1,6 +1,7 @@
 import {
   generateCandidateData,
   generateCompanyData,
+  generatePanelLIstInfo,
 } from "../../assets/heleperFunctions/heleperFunctions";
 
 export const fetchCandidatsData = async () => {
@@ -38,7 +39,7 @@ export const fetchSoloCompanyData = async (companyId) => {
 export const fetchReportsData = async () => {
   const res = await fetch("http://localhost:3333/api/reports");
   const data = await res.json();
-  console.log(data);
+  return data.map((company) => generatePanelLIstInfo(company));
 };
 
 export const fetchUsersData = async () => {
