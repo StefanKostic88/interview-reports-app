@@ -48,8 +48,10 @@
 
   /*========== z index ==========*/
   --z-normal: 1;
-  --z-tooltip: 10;
+  /* --z-tooltip: 10; */
+  /* --z-tooltip: 50; */
   --z-fixed: 100;
+  /* --z-fixed: 100; */
 }
 
 /* Responsive typography */
@@ -206,6 +208,7 @@ body.dark-theme {
   border: 2px solid var(--text-color-light);
   transition: all 0.3s;
 }
+
 .btn-white {
   width: max-content;
   display: inline-flex;
@@ -264,7 +267,8 @@ body.dark-theme {
   width: 100%;
   position: fixed;
   left: 0;
-  z-index: var(--z-tooltip);
+  /* z-index: var(--z-tooltip); */
+  z-index: 1000;
 }
 .nav {
   height: calc(var(--header-height) + 3rem);
@@ -643,8 +647,10 @@ textarea,
   background: var(--white-color);
   border: 2px solid var(--text-color-light);
   padding: 0.5rem;
+  padding-left: 2rem;
   text-align: center;
   box-shadow: 2px 2px 2px hsla(207, 24%, 8%, 0.4);
+  cursor: pointer;
 }
 .operations__card:hover {
   border: 2px solid var(--text-color);
@@ -674,7 +680,8 @@ textarea,
   align-items: flex-end;
 }
 .operations__card-info {
-  padding-right: 2rem;
+  /* padding-right: 2rem; */
+  flex: 2;
 }
 .operations__card-name,
 .operations__card-email {
@@ -1184,4 +1191,17 @@ textarea,
   .footer__copy {
     margin-top: 5rem;
   }
+}
+
+.active {
+  color: var(--white-color);
+  background-color: var(--first-color);
+  border: 2px solid var(--white-color);
+  transition: all 0.3s;
+}
+
+.left {
+  margin-left: auto;
+  display: flex;
+  gap: 1rem;
 }

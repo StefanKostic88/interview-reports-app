@@ -6,9 +6,14 @@ const OperationOneCardItem = ({
   id,
   name,
   onClick,
+  isActive,
 }) => {
+  // isActiveCard
   return (
-    <div className="operations__card" onClick={onClick}>
+    <div
+      className={`operations__card ${isActive ? "active" : ""}`}
+      onClick={onClick}
+    >
       <div className="operations__card-border">
         <div className="operations__card-perfil">
           <img src={avatar} alt="Card" className="operations__card-img" />

@@ -17,12 +17,12 @@ const AdnministrativePanelSubmit = ({ candidatesList }) => {
 
   const generateCompanyList = async (id) => {
     const list = await fetchCompaniesDataUnsliced(id);
-    setCompanyList(() => [...list]);
+    const updatedList = list.map((el) => ({ ...el, isActive: false }));
+    setCompanyList(() => [...updatedList]);
   };
 
   const getCandidateId = (id) => {
     setActiveTab((prev) => prev + 1);
-
     generateCompanyList(id);
   };
 
@@ -32,6 +32,13 @@ const AdnministrativePanelSubmit = ({ candidatesList }) => {
     setCompanyName(() => name);
   };
   console.log();
+
+  const backToFirst = () => {
+    setActiveTab((prev) => prev - 1);
+  };
+  const backToSecond = () => {
+    setActiveTab((prev) => prev - 1);
+  };
 
   useEffect(() => {
     if (!companyList) return;
@@ -56,6 +63,7 @@ const AdnministrativePanelSubmit = ({ candidatesList }) => {
             <OperationTwo
               companyListData={companyList}
               candidateName={candidateName}
+              onBackToFirst={backToFirst}
               onCompanyClick={getComanyIdAndName}
             />
           )}
@@ -63,6 +71,7 @@ const AdnministrativePanelSubmit = ({ candidatesList }) => {
             <OperationThree
               candidateName={candidateName}
               companyName={companyName}
+              onBackToSecond={backToSecond}
             />
           )}
         </AdminstrativePanelOperations>

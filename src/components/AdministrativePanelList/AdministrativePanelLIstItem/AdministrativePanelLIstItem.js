@@ -20,7 +20,7 @@ const AdministrativePanelLIstItem = ({
         <p>Candidate</p>
       </div>
       <div className="reports__info-item">
-        <h3>{interviewDate}.</h3>
+        <h3>{interviewDate}</h3>
         <p>Interview&nbsp;Date</p>
       </div>
       <div className="reports__info-item">

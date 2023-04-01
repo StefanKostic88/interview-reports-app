@@ -1,6 +1,6 @@
 import React from "react";
 
-const OperationThree = ({ candidateName, companyName }) => {
+const OperationThree = ({ candidateName, companyName, onBackToSecond }) => {
   const submitHandler = (e) => {
     e.preventDefault();
     const data = {
@@ -80,7 +80,9 @@ const OperationThree = ({ candidateName, companyName }) => {
             </div>
           </div>
           <div className="operations__form">
-            <button className="btn-alt">BACK</button>
+            <button className="btn-alt" onClick={() => onBackToSecond()}>
+              BACK
+            </button>
             <button className="btn">SUBMIT</button>
           </div>
         </form>

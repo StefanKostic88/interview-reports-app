@@ -1,9 +1,26 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import OperationOneCardItem from "./OperationOneCardItem/OperationOneCardItem";
 
 const OperationOne = ({ candidatesList, onCandidateClick }) => {
   const [btnIsActive, setBtnIsActive] = useState(false);
   const [chosenId, setChosenId] = useState(null);
+
+  const [listStyled, setListStyled] = useState([]);
+
+  useEffect(() => {
+    setListStyled(() => [...candidatesList]);
+  }, [candidatesList]);
+
+  const setActiveStyleStatus = (id) => {
+    const newArr = listStyled.map((el) => {
+      if (el.id === id) {
+        return { ...el, isActive: true };
+      } else {
+        return { ...el, isActive: false };
+      }
+    });
+    setListStyled(() => [...newArr]);
+  };
 
   return (
     <div className="operations__content operations__content--1 operations__content--active">
@@ -23,19 +40,21 @@ const OperationOne = ({ candidatesList, onCandidateClick }) => {
         </form>
       </div>
       <div className="operations__card-list">
-        {candidatesList.map((candidate) => (
+        {listStyled.map((candidate) => (
           <OperationOneCardItem
             {...candidate}
             key={candidate.id}
             onClick={() => {
               setBtnIsActive(() => true);
               setChosenId(() => candidate.id);
+              setActiveStyleStatus(candidate.id);
             }}
           />
         ))}
       </div>
       {btnIsActive && (
         <button
+          className="btn left"
           onClick={() => {
             onCandidateClick(chosenId);
           }}

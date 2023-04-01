@@ -1,9 +1,32 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
-const OperationTwo = ({ companyListData, onCompanyClick, candidateName }) => {
+const OperationTwo = ({
+  companyListData,
+  onCompanyClick,
+  candidateName,
+  onBackToFirst,
+}) => {
   const [btnIsActive, setBtnIsActive] = useState(false);
+  const [companyListStyled, setCompanyListStyled] = useState([]);
   const [comName, setComname] = useState("");
   const [chosenId, setChosenId] = useState(null);
+  console.log(companyListData);
+  useEffect(() => {
+    if (!companyListData) return;
+    setCompanyListStyled(() => [...companyListData]);
+  }, [companyListData]);
+
+  const setActiveStatus = (id) => {
+    console.log(id);
+    const updatedArr = companyListStyled.map((company) => {
+      if (company.companyId === id) {
+        return { ...company, isActive: true };
+      } else {
+        return { ...company, isActive: false };
+      }
+    });
+    setCompanyListStyled(() => [...updatedArr]);
+  };
 
   if (!companyListData) return <div>Loading...</div>;
   return (
@@ -28,29 +51,39 @@ const OperationTwo = ({ companyListData, onCompanyClick, candidateName }) => {
         </form>
       </div>
       <div className="operations__card-list operations__select-company">
-        {companyListData.map(({ companyName, companyId }) => (
+        {companyListStyled.map(({ companyName, companyId, isActive }) => (
           <div
             key={companyId}
-            className="operations__select-company-item"
+            className={`operations__select-company-item ${
+              isActive ? "active" : ""
+            }`}
             onClick={() => {
               setBtnIsActive(() => true);
               setChosenId(() => companyId);
               setComname(() => companyName);
+              setActiveStatus(companyId);
             }}
           >
             {companyName}
           </div>
         ))}
       </div>
-      {btnIsActive && (
-        <button
-          onClick={() => {
-            onCompanyClick(chosenId, comName);
-          }}
-        >
-          Next
+
+      <div className="left">
+        <button className="btn" onClick={() => onBackToFirst()}>
+          Back
         </button>
-      )}
+        {btnIsActive && (
+          <button
+            className="btn "
+            onClick={() => {
+              onCompanyClick(chosenId, comName);
+            }}
+          >
+            Next
+          </button>
+        )}
+      </div>
     </div>
   );
 };

@@ -12,7 +12,7 @@ const MainHeader = () => {
           </Link>
         </div>
         <div>
-          {location.pathname !== "/panel" && (
+          {location.pathname === "/" && (
             <>
               <Link to={"/"} className="btn-alt">
                 Candidates
@@ -23,12 +23,12 @@ const MainHeader = () => {
             </>
           )}
 
-          {location.pathname === "/panel" && (
+          {location.pathname !== "/" && (
             <>
               <Link to={"/panel"} className="btn-alt">
                 Reports
               </Link>
-              <Link to={"/panel"} className="btn-alt">
+              <Link to={"/panel/submit-report"} className="btn-alt">
                 Create Report
               </Link>
             </>
@@ -40,11 +40,3 @@ const MainHeader = () => {
 };
 
 export default MainHeader;
-
-// {location.pathname === "/panel" && (
-
-//   )}
-
-// {location.pathname !== "/panel" && (
-
-//   )}

@@ -8,8 +8,8 @@ const AdminstrativePanelOperations = ({ children, tabIsActive }) => {
     <div className="operations">
       <div className="operations__tab-container">
         <button
-          className={`btn-alt operations__tab operations__tab--1 ${
-            tabIsActive === 1 ? "operations__tab--active" : ""
+          className={`btn-alt operations__tab operations__tab--1  ${
+            tabIsActive === 1 ? "operations__tab--active active" : ""
           }`}
           data-tab="1"
         >
@@ -17,7 +17,7 @@ const AdminstrativePanelOperations = ({ children, tabIsActive }) => {
         </button>
         <button
           className={`btn-alt operations__tab operations__tab--1 ${
-            tabIsActive === 2 ? "operations__tab--active" : ""
+            tabIsActive === 2 ? "operations__tab--active active" : ""
           }`}
           data-tab="2"
         >
@@ -25,7 +25,7 @@ const AdminstrativePanelOperations = ({ children, tabIsActive }) => {
         </button>
         <button
           className={`btn-alt operations__tab operations__tab--1 ${
-            tabIsActive === 3 ? "operations__tab--active" : ""
+            tabIsActive === 3 ? "operations__tab--active active" : ""
           }`}
           data-tab="3"
         >

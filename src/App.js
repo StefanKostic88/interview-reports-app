@@ -15,7 +15,12 @@ const App = () => {
   useEffect(() => {
     const getCandidates = async () => {
       const data = await fetchCandidatsData();
-      setCandidatesList(() => [...data]);
+
+      const dataAddedFalseIsActive = data.map((el) => ({
+        ...el,
+        isActive: false,
+      }));
+      setCandidatesList(() => [...dataAddedFalseIsActive]);
     };
     getCandidates();
   }, []);
@@ -34,7 +39,7 @@ const App = () => {
           />
           <Route path={"/panel"} element={<AdministrativePanelReports />} />
           <Route
-            path={"/panel/report/:id"}
+            path={"/panel/submit-report"}
             element={
               <AdnministrativePanelSubmit candidatesList={candidatesList} />
             }
@@ -46,5 +51,3 @@ const App = () => {
 };
 
 export default App;
-
-// import { MdVisibility } from "react-icons/md";
