@@ -7,6 +7,7 @@ import {
 export const fetchCandidatsData = async () => {
   const res = await fetch("http://localhost:3333/api/candidates");
   const data = await res.json();
+
   return data.map((candidate) => generateCandidateData(candidate));
 };
 
@@ -48,9 +49,10 @@ export const fetchCompaniesDataUnsliced = async (id) => {
 export const fetchReportsData = async () => {
   const res = await fetch("http://localhost:3333/api/reports");
   const data = await res.json();
+  console.log(data);
   return data.map((company) => generatePanelLIstInfo(company));
 };
-
+fetchReportsData();
 // export const fetchUsersData = async () => {
 //   const res = await fetch("http://localhost:3333/api/users");
 //   const data = await res.json();
@@ -79,3 +81,21 @@ export const fetchCandidateDataUnsliced = async (id) => {
   console.log(data);
   return generateCandidateData(data[0]);
 };
+
+const getIdOfLast = async () => {
+  const res = await fetch("http://localhost:3333/api/candidates");
+  const data = await res.json();
+  const res1 = await fetch("http://localhost:3333/api/companies");
+  const data1 = await res1.json();
+
+  const { id: candidateId, name: candidateName } = data.at(-1);
+  const { id: companyId, name: companyName } = data1.at(-1);
+  const obj = {
+    candidateId,
+    candidateName,
+    companyId,
+    companyName,
+  };
+  console.log(obj);
+};
+getIdOfLast();

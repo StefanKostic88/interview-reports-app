@@ -6,24 +6,37 @@ import {
   CandidateReports,
   AdministrativePanelReports,
   AdnministrativePanelSubmit,
+  CreateReport,
 } from "./pages";
 
 import { fetchCandidatsData } from "./services/fetchData/fehtchData";
 
 const App = () => {
   const [candidatesList, setCandidatesList] = useState([]);
-  useEffect(() => {
-    const getCandidates = async () => {
-      const data = await fetchCandidatsData();
+  const [isSubmited, setIsSubmited] = useState(false);
 
-      const dataAddedFalseIsActive = data.map((el) => ({
-        ...el,
-        isActive: false,
-      }));
-      setCandidatesList(() => [...dataAddedFalseIsActive]);
-    };
+  const registerSubmit = () => {
+    setIsSubmited(() => true);
+  };
+  const getCandidates = async () => {
+    const data = await fetchCandidatsData();
+
+    const dataAddedFalseIsActive = data.map((el) => ({
+      ...el,
+      isActive: false,
+    }));
+    setCandidatesList(() => [...dataAddedFalseIsActive]);
+  };
+
+  useEffect(() => {
     getCandidates();
   }, []);
+  // console.log(candidatesList);
+
+  // useEffect(() => {
+  //   getCandidates();
+  //   setIsSubmited(() => false);
+  // }, [isSubmited]);
 
   return (
     <>
@@ -38,6 +51,10 @@ const App = () => {
             element={<CandidateReports />}
           />
           <Route path={"/panel"} element={<AdministrativePanelReports />} />
+          <Route
+            path={"/panel/create"}
+            element={<CreateReport onRegistersubmit={registerSubmit} />}
+          />
           <Route
             path={"/panel/submit-report"}
             element={

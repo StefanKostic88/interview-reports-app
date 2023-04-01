@@ -1205,3 +1205,8 @@ textarea,
   display: flex;
   gap: 1rem;
 }
+
+.form-wraped {
+  display: flex;
+  flex-wrap: wrap;
+}

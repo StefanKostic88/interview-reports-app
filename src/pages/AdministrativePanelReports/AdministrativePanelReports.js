@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router";
 
 import {
   MainContainer,
@@ -17,6 +18,7 @@ import {
 import { convertWordToUpperCase } from "../../assets/heleperFunctions/heleperFunctions";
 
 const AdministrativePanelReports = () => {
+  const navigate = useNavigate();
   const [reports, setReports] = useState(null);
   const [candidateFilter, setCandidateFilter] = useState(null);
   const [companyFilter, setCompanyFilter] = useState(null);
@@ -115,6 +117,9 @@ const AdministrativePanelReports = () => {
               />
             </div>
           </form>
+          <button className="btn" onClick={() => navigate("/panel/create")}>
+            Create User
+          </button>
         </div>
       </section>
       <section className="section container" id="operation">
