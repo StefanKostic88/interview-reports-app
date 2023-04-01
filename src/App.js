@@ -5,13 +5,10 @@ import {
   Home,
   CandidateReports,
   AdministrativePanelReports,
+  AdnministrativePanelSubmit,
 } from "./pages";
-import { AdministrativePanelList } from "./components";
 
-import {
-  fetchCandidatsData,
-  fetchReportsData,
-} from "./services/fetchData/fehtchData";
+import { fetchCandidatsData } from "./services/fetchData/fehtchData";
 
 const App = () => {
   const [candidatesList, setCandidatesList] = useState([]);
@@ -36,6 +33,12 @@ const App = () => {
             element={<CandidateReports />}
           />
           <Route path={"/panel"} element={<AdministrativePanelReports />} />
+          <Route
+            path={"/panel/report/:id"}
+            element={
+              <AdnministrativePanelSubmit candidatesList={candidatesList} />
+            }
+          />
         </Route>
       </Routes>
     </>

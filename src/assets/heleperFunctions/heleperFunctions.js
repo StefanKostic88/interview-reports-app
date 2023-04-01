@@ -6,6 +6,13 @@ const convertDate = (date) => {
   });
 };
 
+export const convertWordToUpperCase = (str) => {
+  return str
+    .split(" ")
+    .map((word) => word.slice(0, 1).toUpperCase() + word.slice(1))
+    .join(" ");
+};
+
 export const generateCandidateData = ({
   avatar,
   birthday,

@@ -28,6 +28,14 @@ export const fetchCompaniesData = async (id) => {
   return data.map((company) => generateCompanyData(company));
 };
 
+export const fetchCompaniesDataUnsliced = async (id) => {
+  const res = await fetch(
+    `http://localhost:3333/api/reports?candidateId=${id}`
+  );
+  const data = await res.json();
+  return data.map((company) => generateCompanyData(company));
+};
+
 // export const fetchSoloCompanyData = async (companyId) => {
 //   const res = await fetch(
 //     `http://localhost:3333/api/reports?companyId=${companyId}`

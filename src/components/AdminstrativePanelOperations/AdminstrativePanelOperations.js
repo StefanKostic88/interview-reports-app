@@ -1,22 +1,34 @@
 import React from "react";
 
-const AdminstrativePanelOperations = ({ children }) => {
+const AdminstrativePanelOperations = ({ children, tabIsActive }) => {
+  // console.log(tabIsActive);
+  // console.log(tabIsActive === 1 ? "operations__tab--active" : "");
+
   return (
-    <div class="operations">
-      <div class="operations__tab-container">
+    <div className="operations">
+      <div className="operations__tab-container">
         <button
-          class="btn-alt operations__tab operations__tab--1 "
+          className={`btn-alt operations__tab operations__tab--1 ${
+            tabIsActive === 1 ? "operations__tab--active" : ""
+          }`}
           data-tab="1"
         >
           <span>01</span>Select Candidate
         </button>
         <button
-          class="btn-alt operations__tab operations__tab--2 operations__tab--active"
+          className={`btn-alt operations__tab operations__tab--1 ${
+            tabIsActive === 2 ? "operations__tab--active" : ""
+          }`}
           data-tab="2"
         >
           <span>02</span>Select Company
         </button>
-        <button class="btn-alt operations__tab operations__tab--3" data-tab="3">
+        <button
+          className={`btn-alt operations__tab operations__tab--1 ${
+            tabIsActive === 3 ? "operations__tab--active" : ""
+          }`}
+          data-tab="3"
+        >
           <span>03</span>Fill Report Details
         </button>
       </div>

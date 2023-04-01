@@ -8,6 +8,8 @@ import {
   searchAndSubmitSoloCompany,
 } from "../../services/fetchData/fehtchData";
 
+import { convertWordToUpperCase } from "../../assets/heleperFunctions/heleperFunctions";
+
 const AdministrativePanelReports = () => {
   const [reports, setReports] = useState(null);
   const [candidateFilter, setCandidateFilter] = useState(null);
@@ -15,8 +17,7 @@ const AdministrativePanelReports = () => {
   const [search, setSearch] = useState("");
 
   const getSearchValues = async (searchTearm) => {
-    const convertToFirstUpperSearchTearm =
-      searchTearm.slice(0, 1).toUpperCase() + searchTearm.slice(1);
+    const convertToFirstUpperSearchTearm = convertWordToUpperCase(searchTearm);
 
     const candidateFilterData = await searchAndSubmitSoloCandidate(
       convertToFirstUpperSearchTearm
@@ -50,10 +51,10 @@ const AdministrativePanelReports = () => {
       console.log("Candidate Array");
       setReports(() => [...candidateFilter]);
     }
-    if (candidateFilter.length === 0 && companyFilter.length === 0) {
-      console.log("Empty");
-      // getReportsData();
-    }
+    // if (candidateFilter.length === 0 && companyFilter.length === 0) {
+    //   console.log("Empty");
+    //   // getReportsData();
+    // }
   };
 
   useEffect(() => {
