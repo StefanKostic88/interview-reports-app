@@ -18,3 +18,6 @@ export { default as AdminstrativePanelOperations } from "./AdminstrativePanelOpe
 export { default as OperationOne } from "./AdminstrativePanelOperations/OperationOne/OperationOne";
 export { default as OperationTwo } from "./AdminstrativePanelOperations/OperationTwo/OperationTwo";
 export { default as OperationThree } from "./AdminstrativePanelOperations/OperationThree/OperationThree";
+export { default as CreateForm } from "./CreateForm/CreateForm";
+export { default as CreateFormInput } from "./CreateForm/CreateFormInput/CreateFormInput";
+export { default as CreateFormOptions } from "./CreateForm/CreateFormOptions/CreateFormOptions";

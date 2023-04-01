@@ -3,48 +3,149 @@ import {
   MainContainer,
   AdminstrativePanelOperations,
   OperationThree,
+  CreateForm,
+  CreateFormInput,
+  CreateFormOptions,
 } from "../../components";
+import {
+  generateNameAndReports,
+  postUser,
+} from "../../services/fetchData/fehtchData";
+
+import useCreateForm from "../../hooks/use-create-form/useCreateForm";
 const CreateReport = ({ onRegistersubmit }) => {
-  const [candidateName, setCandidateName] = useState("");
-  const [candidateEmail, setCandidateEmail] = useState("");
-  const [candidateBirthDay, setCandidateBirthDay] = useState("");
-  const [candidatePhase, setCandidatePhase] = useState("cv");
-  const [candidateStatus, setCandidateStatus] = useState("passed");
-  const [candidateNotes, setCandidateNotes] = useState("");
-  const [companyName, setCompanyName] = useState("");
-  const [candidateEducation, setCandidateEducation] = useState("");
   const [submited, setIsSubmited] = useState(false);
 
-  const candidateNameOnChangeHandler = (e) => {
-    setCandidateName(() => e.target.value);
-  };
-  const candidateEmailOnChangeHandler = (e) => {
-    setCandidateEmail(() => e.target.value);
-  };
-  const onBirthdayChangeHandler = (e) => {
-    setCandidateBirthDay(new Date(e.target.value));
-  };
+  const {
+    inputVal: candidateName,
+    valOnChangeHandler: candidateNameOnChangeHandler,
+    resetVal: resetCandidateName,
+  } = useCreateForm(() => "");
+  const {
+    inputVal: candidateEmail,
+    valOnChangeHandler: candidateEmailOnChangeHandler,
+    resetVal: resetCandidateEmail,
+  } = useCreateForm(() => "");
 
-  const onCandidatePhaseChangeHandler = (e) => {
-    setCandidatePhase(e.target.value);
-  };
+  const {
+    inputVal: candidateEducation,
+    valOnChangeHandler: educationOnChangeHandler,
+    resetVal: resetCandidateEducation,
+  } = useCreateForm(() => "");
 
-  const candidateStatusOnChangeHandler = (e) => {
-    setCandidateStatus(() => e.target.value);
-  };
-  const notesOnChangeHandler = (e) => {
-    setCandidateNotes(() => e.target.value);
-  };
+  const {
+    inputVal: candidateBirthDay,
+    valOnChangeHandler: birthdayChangeHandler,
+    resetVal: resetCandidateBirthday,
+  } = useCreateForm(() => "");
+  const {
+    inputVal: interviewDate,
+    valOnChangeHandler: interviewDateOnChangeHandler,
+    resetVal: resetInterviewDate,
+  } = useCreateForm(() => "");
+  const {
+    inputVal: candidatePhase,
+    valOnChangeHandler: onCandidatePhaseChangeHandler,
+    resetVal: resetCandidatePhase,
+  } = useCreateForm(() => "cv");
+  const {
+    inputVal: candidateStatus,
+    valOnChangeHandler: candidateStatusOnChangeHandler,
+    resetVal: resetCandidateStatus,
+  } = useCreateForm(() => "passed");
 
-  const educationOnChangeHandler = (e) => {
-    setCandidateEducation(() => e.target.value);
-  };
+  const {
+    inputVal: candidateNotes,
+    valOnChangeHandler: notesOnChangeHandler,
+    resetVal: resetCandidateNotes,
+  } = useCreateForm(() => "Notes");
+  const {
+    inputVal: companyName,
+    valOnChangeHandler: companyNameOnChangeHandler,
+    resetVal: resetCompanyName,
+  } = useCreateForm(() => "");
 
-  const companyNameOnChangeHandler = (e) => {
-    setCompanyName(() => e.target.value);
-  };
+  const inputArr = [
+    {
+      type: "text",
+      name: "name",
+      id: "name",
+      onChangeHandler: candidateNameOnChangeHandler,
+      label: "Candidate Name:",
+      value: candidateName,
+    },
+    {
+      type: "email",
+      name: "email",
+      id: "email",
+      onChangeHandler: candidateEmailOnChangeHandler,
+      label: "Candidate Email:",
+      value: candidateEmail,
+    },
+    {
+      type: "text",
+      name: "education",
+      id: "education",
+      onChangeHandler: educationOnChangeHandler,
+      label: "Education:",
+      value: candidateEducation,
+    },
+    {
+      type: "date",
+      name: "birthday",
+      id: "birthday",
+      onChangeHandler: birthdayChangeHandler,
+      label: "Birthday:",
+      value: candidateBirthDay,
+    },
+    {
+      type: "date",
+      name: "interview-date",
+      id: "interview-date",
+      onChangeHandler: interviewDateOnChangeHandler,
+      label: "Interview Date:",
+      value: interviewDate,
+    },
+    {
+      type: "text",
+      name: "company-name",
+      id: "company-name",
+      onChangeHandler: companyNameOnChangeHandler,
+      label: "Company Name:",
+      value: companyName,
+    },
+  ];
+
+  const optionsArr = [
+    {
+      onChangeHandler: onCandidatePhaseChangeHandler,
+      id: "tehnical",
+      name: "tehnical",
+      label: "Phase:",
+      otions: [
+        { value: "cv" },
+        { value: "hr" },
+        { value: "tech" },
+        { value: "final" },
+      ],
+    },
+    {
+      onChangeHandler: onCandidatePhaseChangeHandler,
+      id: "select",
+      name: "select",
+      label: "Select:",
+      otions: [{ value: "passed" }, { value: "declined" }],
+      onChangeHandler: candidateStatusOnChangeHandler,
+    },
+  ];
+
   const submitUser = (e) => {
     e.preventDefault();
+
+    // candidateName,candidateEmail,candidateEducation, candidateBirthDay
+
+    // resetCandidateName,resetCandidateEmail, resetCandidateEducation,resetCandidateBirthday
+
     // console.log(
     //   candidateName,
     //   candidateEmail,
@@ -55,12 +156,7 @@ const CreateReport = ({ onRegistersubmit }) => {
     //   candidateEducation,
     // companyName
     // );
-    const user = generateUser(
-      candidateName,
-      candidateBirthDay,
-      candidateEmail,
-      candidateEducation
-    );
+
     const report = generateReports(
       candidateName,
       companyName,
@@ -69,30 +165,40 @@ const CreateReport = ({ onRegistersubmit }) => {
       candidateStatus,
       candidateNotes
     );
+    const generateUser = (name, birthday, email, education) => {
+      return {
+        name,
+        birthday,
+        email,
+        education,
+        // "avatar": "https://cdn.pixabay.com/photo/2016/08/31/11/54/icon-1633249_960_720.png",
+        // "id": 84852315
+      };
+    };
+    const user = generateUser(
+      candidateName,
+      candidateBirthDay,
+      candidateEmail,
+      candidateEducation
+    );
+    console.log(user);
+    // postUser(user);
 
     const gen = async (user) => {
-      const data = await postUser(user);
-      console.log(data[data.lenght - 1]);
-      getId();
+      // const data = await postUser(user);
+      // console.log(data[data.lenght - 1]);
+      // getId();
+      const data = await generateNameAndReports();
+      console.log(data);
     };
-    gen(user);
+    // gen();
+    // gen(user);
     //generate candidate
     //getUserId, name
 
     //generate reposrt
 
     onRegistersubmit();
-  };
-
-  const generateUser = (name, birthday, email, education) => {
-    return {
-      name,
-      birthday,
-      email,
-      education,
-      // "avatar": "https://cdn.pixabay.com/photo/2016/08/31/11/54/icon-1633249_960_720.png",
-      // "id": 84852315
-    };
   };
 
   const generateReports = (
@@ -117,15 +223,6 @@ const CreateReport = ({ onRegistersubmit }) => {
     };
   };
 
-  const postUser = async (user) => {
-    await fetch(`http://localhost:3333/api/candidates`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(user),
-    });
-  };
   const getId = async (user) => {
     const res = await fetch(`http://localhost:3333/api/candidates`);
     const data = await res.json();
@@ -140,113 +237,12 @@ const CreateReport = ({ onRegistersubmit }) => {
             <div className="operations__select operations__select-search section__border">
               <h3>Create User</h3>
             </div>
-            <div className="operations__form-fill">
-              <form action="" id="contact-form" onSubmit={submitUser}>
-                <div className="operations__form">
-                  <div className="operations__form-div">
-                    <label htmlFor="date" className="search__form-tag">
-                      Candidate Name:
-                    </label>
-                    <input
-                      type="text"
-                      name="name"
-                      required
-                      className="search__form-input"
-                      id="name"
-                      onChange={candidateNameOnChangeHandler}
-                    />
-                  </div>
-                  <div className="operations__form-div">
-                    <label htmlFor="date" className="search__form-tag">
-                      Education:
-                    </label>
-                    <input
-                      type="text"
-                      name="name"
-                      required
-                      className="search__form-input"
-                      id="education"
-                      onChange={educationOnChangeHandler}
-                    />
-                  </div>
-                  <div className="operations__form-div">
-                    <label htmlFor="date" className="search__form-tag">
-                      Company name:
-                    </label>
-                    <input
-                      type="text"
-                      name="company"
-                      required
-                      className="search__form-input"
-                      id="company"
-                      onChange={companyNameOnChangeHandler}
-                    />
-                  </div>
-                </div>
-                <div className="operations__form">
-                  <div className="operations__form-div">
-                    <label htmlFor="date" className="search__form-tag">
-                      Interview Date:
-                    </label>
-                    <input
-                      type="date"
-                      name="date"
-                      required
-                      className="search__form-input"
-                      id="date"
-                      onChange={onBirthdayChangeHandler}
-                    />
-                  </div>
-                  <div className="operations__form-div">
-                    <label htmlFor="tehnical" className="search__form-tag">
-                      Phase:
-                    </label>
-                    <select
-                      id="tehnical"
-                      name="tehnical"
-                      onChange={onCandidatePhaseChangeHandler}
-                    >
-                      <option value="cv">cv</option>
-                      <option value="hr">hr</option>
-                      <option value="tech">tech</option>
-                      <option value="final">final</option>
-                    </select>
-                  </div>
-
-                  <div className="operations__form-div">
-                    <label htmlFor="select" className="search__form-tag">
-                      Select:
-                    </label>
-                    <select
-                      id="select"
-                      name="select"
-                      onChange={candidateStatusOnChangeHandler}
-                    >
-                      <option value="passed">Passed</option>
-                      <option value="declined">Declined</option>
-                    </select>
-                  </div>
-                </div>
-                <div className="operations__form">
-                  <div className="operations__form-div">
-                    <textarea
-                      name="message"
-                      rows="10"
-                      cols="30"
-                      onChange={notesOnChangeHandler}
-                    >
-                      Notes
-                    </textarea>
-                  </div>
-                </div>
-                <div className="operations__form">
-                  <button className="btn-alt" onClick={() => () => {}}>
-                    BACK
-                  </button>
-                  <button className="btn">SUBMIT</button>
-                </div>
-              </form>
-            </div>
+            <CreateForm
+              inputArr={inputArr}
+              optionsArr={optionsArr}
+              messageChangeHandler={notesOnChangeHandler}
+              messagevalue={candidateNotes}
+            />
           </div>
         </AdminstrativePanelOperations>
       </section>

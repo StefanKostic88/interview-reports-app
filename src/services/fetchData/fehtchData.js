@@ -7,10 +7,11 @@ import {
 export const fetchCandidatsData = async () => {
   const res = await fetch("http://localhost:3333/api/candidates");
   const data = await res.json();
+  console.log(data);
 
   return data.map((candidate) => generateCandidateData(candidate));
 };
-
+fetchCandidatsData();
 export const fetchCandidateData = async (id) => {
   const idSliced = id.slice(1);
   const res = await fetch(
@@ -82,7 +83,7 @@ export const fetchCandidateDataUnsliced = async (id) => {
   return generateCandidateData(data[0]);
 };
 
-const getIdOfLast = async () => {
+export const generateNameAndReports = async () => {
   const res = await fetch("http://localhost:3333/api/candidates");
   const data = await res.json();
   const res1 = await fetch("http://localhost:3333/api/companies");
@@ -98,4 +99,14 @@ const getIdOfLast = async () => {
   };
   console.log(obj);
 };
-getIdOfLast();
+// getIdOfLast();
+
+export const postUser = async (user) => {
+  await fetch(`http://localhost:3333/api/candidates`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(user),
+  });
+};
