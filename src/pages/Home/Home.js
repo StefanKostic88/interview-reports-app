@@ -1,5 +1,11 @@
 import { useEffect, useState } from "react";
-import { MainContainer, SearchHeader, CardsContainer } from "../../components";
+import {
+  MainContainer,
+  SearchHeader,
+  CardsContainer,
+  LoaderModal,
+  ErrorModal,
+} from "../../components";
 
 const Home = ({ candidatesList }) => {
   const [filteredUsers, setFilteredUsers] = useState(null);
@@ -33,9 +39,13 @@ const Home = ({ candidatesList }) => {
       <section className="container section section__border" id="home">
         <SearchHeader onFilterCandidate={filterCandidate} />
         {!isLoading ? (
-          <CardsContainer candidatesList={filteredUsers} />
+          filteredUsers.length === 0 ? (
+            <ErrorModal />
+          ) : (
+            <CardsContainer candidatesList={filteredUsers} />
+          )
         ) : (
-          <div>Loading</div>
+          <LoaderModal />
         )}
       </section>
     </MainContainer>

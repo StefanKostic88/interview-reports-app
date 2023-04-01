@@ -1,11 +1,17 @@
 import { useEffect, useState } from "react";
 
-import { MainContainer, AdministrativePanelList } from "../../components";
+import {
+  MainContainer,
+  AdministrativePanelList,
+  CandidateReportsModalWindow,
+} from "../../components";
 
 import {
   fetchReportsData,
   searchAndSubmitSoloCandidate,
   searchAndSubmitSoloCompany,
+  fetchCandidateDataUnsliced,
+  fetchCompaniesDataUnsliced,
 } from "../../services/fetchData/fehtchData";
 
 import { convertWordToUpperCase } from "../../assets/heleperFunctions/heleperFunctions";
@@ -15,6 +21,17 @@ const AdministrativePanelReports = () => {
   const [candidateFilter, setCandidateFilter] = useState(null);
   const [companyFilter, setCompanyFilter] = useState(null);
   const [search, setSearch] = useState("");
+  const [isOpen, setIsOpen] = useState(false);
+  const [modalInfo, setModalInfo] = useState({});
+
+  const getCandidateInfo = async (candidateId, companyId) => {
+    console.log(candidateId, companyId);
+    const candidateCompanies = await fetchCompaniesDataUnsliced(candidateId);
+    const data = candidateCompanies.find(
+      (company) => company.companyId === companyId
+    );
+    setModalInfo(() => ({ ...data }));
+  };
 
   const getSearchValues = async (searchTearm) => {
     const convertToFirstUpperSearchTearm = convertWordToUpperCase(searchTearm);
@@ -57,6 +74,17 @@ const AdministrativePanelReports = () => {
     // }
   };
 
+  const getModalInfo = (id, companyId) => {
+    console.log(id);
+    getCandidateInfo(id, companyId);
+    setIsOpen(() => true);
+  };
+
+  const closeModal = () => {
+    setIsOpen(() => false);
+    setModalInfo(() => {});
+  };
+
   useEffect(() => {
     getReportsData();
   }, []);
@@ -90,8 +118,14 @@ const AdministrativePanelReports = () => {
         </div>
       </section>
       <section className="section container" id="operation">
-        <AdministrativePanelList reportsData={reports} />
+        <AdministrativePanelList
+          reportsData={reports}
+          onGetModalInfo={getModalInfo}
+        />
       </section>
+      {isOpen && (
+        <CandidateReportsModalWindow {...modalInfo} onCloseModal={closeModal} />
+      )}
     </MainContainer>
   );
 };

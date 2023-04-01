@@ -1,4 +1,4 @@
-import React from "react";
+import { MdRemoveRedEye, MdClose } from "react-icons/md";
 
 const AdministrativePanelLIstItem = ({
   candidateId,
@@ -6,6 +6,8 @@ const AdministrativePanelLIstItem = ({
   companyName,
   interviewDate,
   status,
+  onGetModalInfo,
+  companyId,
 }) => {
   return (
     <div className="reports-item">
@@ -26,14 +28,17 @@ const AdministrativePanelLIstItem = ({
         <p>Status</p>
       </div>
       <div className="reports__info-item reports__info-item-last">
-        <button className="show-modal btn-transparent">
-          <img
-            src="./assets/img/eye-icon.svg"
-            alt="eye icon"
-            className="reports-icon"
-          />
+        <button
+          className="show-modal btn-transparent"
+          onClick={() => {
+            onGetModalInfo(candidateId, companyId);
+          }}
+        >
+          <MdRemoveRedEye style={{ width: "30px", height: "30px" }} />
         </button>
-        <button className="delete-reports btn-transparent">&times;</button>
+        <button className="delete-reports btn-transparent">
+          <MdClose />
+        </button>
       </div>
     </div>
   );

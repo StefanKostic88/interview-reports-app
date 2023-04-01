@@ -33,6 +33,7 @@ export const fetchCompaniesDataUnsliced = async (id) => {
     `http://localhost:3333/api/reports?candidateId=${id}`
   );
   const data = await res.json();
+  console.log(data);
   return data.map((company) => generateCompanyData(company));
 };
 
@@ -69,4 +70,12 @@ export const searchAndSubmitSoloCompany = async (name) => {
   );
   const data = await res.json();
   return data.map((company) => generatePanelLIstInfo(company));
+};
+
+export const fetchCandidateDataUnsliced = async (id) => {
+  // const idSliced = id.slice(1);
+  const res = await fetch(`http://localhost:3333/api/candidates/?id=${id}`);
+  const data = await res.json();
+  console.log(data);
+  return generateCandidateData(data[0]);
 };
