@@ -1,6 +1,13 @@
 import { useEffect, useState } from "react";
 import { Route, Routes } from "react-router";
-import { Root, Home, CandidateReports, AdministrativePanel } from "./pages";
+import {
+  Root,
+  Home,
+  CandidateReports,
+  AdministrativePanelReports,
+  AdnministrativePanelSubmit,
+} from "./pages";
+
 import { fetchCandidatsData } from "./services/fetchData/fehtchData";
 
 const App = () => {
@@ -8,7 +15,12 @@ const App = () => {
   useEffect(() => {
     const getCandidates = async () => {
       const data = await fetchCandidatsData();
-      setCandidatesList(() => [...data]);
+
+      const dataAddedFalseIsActive = data.map((el) => ({
+        ...el,
+        isActive: false,
+      }));
+      setCandidatesList(() => [...dataAddedFalseIsActive]);
     };
     getCandidates();
   }, []);
@@ -25,7 +37,13 @@ const App = () => {
             path={"/candidate-reports/:id"}
             element={<CandidateReports />}
           />
-          <Route path={"/panel"} element={<AdministrativePanel />} />
+          <Route path={"/panel"} element={<AdministrativePanelReports />} />
+          <Route
+            path={"/panel/submit-report"}
+            element={
+              <AdnministrativePanelSubmit candidatesList={candidatesList} />
+            }
+          />
         </Route>
       </Routes>
     </>

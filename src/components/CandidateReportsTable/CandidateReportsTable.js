@@ -1,44 +1,148 @@
-import React from "react";
+import { useEffect, useState } from "react";
+import { MdKeyboardArrowDown, MdKeyboardArrowUp } from "react-icons/md";
 import CandidateReportsTableBody from "./CandidateReportsTableBody/CandidateReportsTableBody";
 
 const CandidateReportsTable = ({ companies, onGetModalInfo }) => {
+  const [companiesList, setCompaniesList] = useState([]);
+  const [companyIsSortedUp, setCompanyIsSortedUp] = useState(true);
+  const [dateIsSorted, setDateIsSorted] = useState(true);
+  const [statusIsSorted, setStatusIsSorted] = useState(true);
+
+  const sortByCompanyName = () => {
+    const sotrted = companies.sort((a, b) => {
+      if (a.companyName < b.companyName) {
+        return -1;
+      }
+    });
+    setCompaniesList(() => [...sotrted]);
+    setCompanyIsSortedUp(() => false);
+    setDateIsSorted(() => true);
+    setStatusIsSorted(() => true);
+  };
+  const sortByCompanyNameReverted = () => {
+    const sotrted = companies.sort((a, b) => {
+      if (a.companyName > b.companyName) {
+        return -1;
+      }
+    });
+    setCompaniesList(() => [...sotrted]);
+    setCompanyIsSortedUp(() => true);
+    setDateIsSorted(() => true);
+    setStatusIsSorted(() => true);
+  };
+
+  const sortByPassedStatus = () => {
+    const sotrted = companies.sort((a, b) => {
+      if (a.status > b.status) {
+        return -1;
+      }
+    });
+    setCompaniesList(() => [...sotrted]);
+    setStatusIsSorted(() => false);
+    setDateIsSorted(() => true);
+    setCompanyIsSortedUp(() => true);
+  };
+  const sortByPassedStatusReverted = () => {
+    const sotrted = companies.sort((a, b) => {
+      if (a.status < b.status) {
+        return -1;
+      }
+    });
+    setCompaniesList(() => [...sotrted]);
+    setStatusIsSorted(() => true);
+    setDateIsSorted(() => true);
+    setCompanyIsSortedUp(() => true);
+  };
+
+  const sortByDate = () => {
+    const sotrted = companies.sort((a, b) => {
+      if (a.interviewDate < b.interviewDate) {
+        return -1;
+      }
+    });
+    setCompaniesList(() => [...sotrted]);
+    setDateIsSorted(() => false);
+    setStatusIsSorted(() => true);
+    setCompanyIsSortedUp(() => true);
+  };
+  const sortByDateReverted = () => {
+    const sotrted = companies.sort((a, b) => {
+      if (a.interviewDate > b.interviewDate) {
+        return -1;
+      }
+    });
+    setCompaniesList(() => [...sotrted]);
+    setDateIsSorted(() => true);
+    setStatusIsSorted(() => true);
+    setCompanyIsSortedUp(() => true);
+  };
+
+  useEffect(() => {
+    if (!companies) return;
+    setCompaniesList(() => [...companies]);
+  }, []);
+
   return (
     <section className="table container section hscroll">
       <table className="table">
         <tbody>
           <th>
             <span>
-              <img
-                src="./assets/img/down-arrow-icon.svg"
-                alt="down arrow icon"
-                className="table-icon"
-              />
+              {companyIsSortedUp ? (
+                <MdKeyboardArrowDown
+                  onClick={() => {
+                    sortByCompanyName();
+                  }}
+                />
+              ) : (
+                <MdKeyboardArrowUp
+                  onClick={() => {
+                    sortByCompanyNameReverted();
+                  }}
+                />
+              )}
               Company
             </span>
           </th>
           <th>
             <span>
-              <img
-                src="./assets/img/down-arrow-icon.svg"
-                alt="down arrow icon"
-                className="table-icon"
-              />
+              {dateIsSorted ? (
+                <MdKeyboardArrowDown
+                  onClick={() => {
+                    sortByDate();
+                  }}
+                />
+              ) : (
+                <MdKeyboardArrowUp
+                  onClick={() => {
+                    sortByDateReverted();
+                  }}
+                />
+              )}
               Interview&nbsp;Date
             </span>
           </th>
           <th colSpan="2">
             <span>
-              <img
-                src="./assets/img/down-arrow-icon.svg"
-                alt="down arrow icon"
-                className="table-icon"
-              />
+              {statusIsSorted ? (
+                <MdKeyboardArrowDown
+                  onClick={() => {
+                    sortByPassedStatus();
+                  }}
+                />
+              ) : (
+                <MdKeyboardArrowUp
+                  onClick={() => {
+                    sortByPassedStatusReverted();
+                  }}
+                />
+              )}
               Status
             </span>
           </th>
         </tbody>
         <CandidateReportsTableBody
-          companies={companies}
+          companies={companiesList}
           onGetModalInfo={onGetModalInfo}
         />
       </table>
@@ -47,65 +151,3 @@ const CandidateReportsTable = ({ companies, onGetModalInfo }) => {
 };
 
 export default CandidateReportsTable;
-
-{
-  /* <tr>
-<td data-label="Company">Google</td>
-<td data-label="Date">20.3.2023.</td>
-<td data-label="Status">Passed</td>
-<td>
-  <a href="#" className="show-modal">
-    <img
-      src="./assets/img/eye-icon.svg"
-      alt="eye icon"
-      className="table-icon"
-    />
-  </a>
-</td>
-</tr>
-
-<tr>
-<td data-label="Company">Facebook</td>
-<td data-label="Date">22.3.2023.</td>
-<td data-label="Status">Declined</td>
-<td>
-  <a href="#" className="show-modal">
-    <img
-      src="./assets/img/eye-icon.svg"
-      alt="eye icon"
-      className="table-icon"
-    />
-  </a>
-</td>
-</tr>
-
-<tr>
-<td data-label="Company">Instagram</td>
-<td data-label="Date">28.3.2023.</td>
-<td data-label="Status">Passed</td>
-<td>
-  <a href="#" className="show-modal">
-    <img
-      src="./assets/img/eye-icon.svg"
-      alt="eye icon"
-      className="table-icon"
-    />
-  </a>
-</td>
-</tr>
-
-<tr>
-<td data-label="Company">Linkedin</td>
-<td data-label="Date">04.4.2023.</td>
-<td data-label="Status">Passed</td>
-<td>
-  <a href="#" className="show-modal">
-    <img
-      src="./assets/img/eye-icon.svg"
-      alt="eye icon"
-      className="table-icon"
-    />
-  </a>
-</td>
-</tr> */
-}

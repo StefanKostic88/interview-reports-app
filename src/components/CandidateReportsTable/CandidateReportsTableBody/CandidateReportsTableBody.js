@@ -1,4 +1,5 @@
 import React from "react";
+import { MdVisibility } from "react-icons/md";
 
 const CandidateReportsTableBody = ({ companies, onGetModalInfo }) => {
   return (
@@ -17,11 +18,7 @@ const CandidateReportsTableBody = ({ companies, onGetModalInfo }) => {
                   onGetModalInfo(companyId);
                 }}
               >
-                <img
-                  src="./assets/img/eye-icon.svg"
-                  alt="eye icon"
-                  className="table-icon"
-                />
+                <MdVisibility />
               </a>
             </td>
           </tr>
@@ -32,3 +29,11 @@ const CandidateReportsTableBody = ({ companies, onGetModalInfo }) => {
 };
 
 export default CandidateReportsTableBody;
+
+{
+  /* <img
+                  src="./assets/img/eye-icon.svg"
+                  alt="eye icon"
+                  className="table-icon"
+                /> */
+}

@@ -13,3 +13,8 @@ export { default as AppContainer } from "./ui/AppContainer/AppContainer";
 export { default as CandidateReportsInfo } from "./CandidateReportsInfo/CandidateReportsInfo";
 export { default as CandidateReportsTable } from "./CandidateReportsTable/CandidateReportsTable";
 export { default as CandidateReportsModalWindow } from "./CandidateReportsModalWindow/CandidateReportsModalWindow";
+export { default as AdministrativePanelList } from "./AdministrativePanelList/AdministrativePanelList";
+export { default as AdminstrativePanelOperations } from "./AdminstrativePanelOperations/AdminstrativePanelOperations";
+export { default as OperationOne } from "./AdminstrativePanelOperations/OperationOne/OperationOne";
+export { default as OperationTwo } from "./AdminstrativePanelOperations/OperationTwo/OperationTwo";
+export { default as OperationThree } from "./AdminstrativePanelOperations/OperationThree/OperationThree";
