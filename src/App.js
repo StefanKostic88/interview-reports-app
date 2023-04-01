@@ -1,6 +1,11 @@
 import { useEffect, useState } from "react";
 import { Route, Routes } from "react-router";
-import { Root, Home, CandidateReports, AdministrativePanel } from "./pages";
+import {
+  Root,
+  Home,
+  CandidateReports,
+  AdministrativePanelReports,
+} from "./pages";
 import { AdministrativePanelList } from "./components";
 
 import {
@@ -10,7 +15,6 @@ import {
 
 const App = () => {
   const [candidatesList, setCandidatesList] = useState([]);
-  const [reports, setReports] = useState(null);
   useEffect(() => {
     const getCandidates = async () => {
       const data = await fetchCandidatsData();
@@ -18,18 +22,6 @@ const App = () => {
     };
     getCandidates();
   }, []);
-
-  useEffect(() => {
-    const getReportsData = async () => {
-      const data = await fetchReportsData();
-
-      setReports(() => [...data]);
-    };
-
-    getReportsData();
-  }, []);
-
-  if (!reports) return <div>Loading...</div>;
 
   return (
     <>
@@ -43,16 +35,7 @@ const App = () => {
             path={"/candidate-reports/:id"}
             element={<CandidateReports />}
           />
-          <Route path={"/panel"} element={<AdministrativePanel />}>
-            <Route
-              path={"/panel/"}
-              element={<AdministrativePanelList reportsData={reports} />}
-            ></Route>
-            <Route
-              path={"/panel/:id"}
-              element={<AdministrativePanelList reportsData={reports} />}
-            ></Route>
-          </Route>
+          <Route path={"/panel"} element={<AdministrativePanelReports />} />
         </Route>
       </Routes>
     </>

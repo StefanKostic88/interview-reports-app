@@ -1,10 +1,9 @@
 import AdministrativePanelLIstItem from "./AdministrativePanelLIstItem/AdministrativePanelLIstItem";
 
 const AdministrativePanelList = ({ reportsData }) => {
-  console.log(reportsData);
   if (!reportsData) return;
   return (
-    <section class="container section reports__list" id="reports-list">
+    <section className="container section reports__list" id="reports-list">
       {reportsData.map((report, index) => (
         <AdministrativePanelLIstItem
           {...report}
