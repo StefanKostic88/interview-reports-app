@@ -9,7 +9,6 @@ import {
 import {
   fetchCandidateData,
   fetchCompaniesData,
-  fetchSoloCompanyData,
 } from "../../services/fetchData/fehtchData";
 
 const CandidateReports = () => {

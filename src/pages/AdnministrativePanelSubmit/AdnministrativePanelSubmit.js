@@ -14,6 +14,7 @@ const AdnministrativePanelSubmit = ({ candidatesList }) => {
   const [candidateName, setCandidateName] = useState("");
   const [companyName, setCompanyName] = useState("");
   const [companyList, setCompanyList] = useState(null);
+  const [report, setReport] = useState({});
 
   const generateCompanyList = async (id) => {
     const list = await fetchCompaniesDataUnsliced(id);
@@ -31,7 +32,6 @@ const AdnministrativePanelSubmit = ({ candidatesList }) => {
     setActiveTab((prev) => prev + 1);
     setCompanyName(() => name);
   };
-  console.log();
 
   const backToFirst = () => {
     setActiveTab((prev) => prev - 1);
@@ -39,15 +39,17 @@ const AdnministrativePanelSubmit = ({ candidatesList }) => {
   const backToSecond = () => {
     setActiveTab((prev) => prev - 1);
   };
+  const resetSteper = () => {
+    setActiveTab(() => 1);
+  };
 
   useEffect(() => {
     if (!companyList) return;
     setCandidateName(() => companyList[0].candidateName);
+    setReport(() => [...companyList]);
   }, [companyList]);
-  useEffect(() => {
-    // if (!companyList) return;
-    // setCandidateName(() => companyList[0].candidateName);
-  }, [companyList]);
+
+  console.log(candidateName, companyName);
 
   return (
     <MainContainer>
@@ -71,7 +73,9 @@ const AdnministrativePanelSubmit = ({ candidatesList }) => {
             <OperationThree
               candidateName={candidateName}
               companyName={companyName}
+              report={report}
               onBackToSecond={backToSecond}
+              onResetSteper={resetSteper}
             />
           )}
         </AdminstrativePanelOperations>

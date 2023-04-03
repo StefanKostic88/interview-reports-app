@@ -1,13 +1,63 @@
-import React from "react";
+import useCreateForm from "../../../hooks/use-create-form/useCreateForm";
+import { fetchSoloReportAndUpdate } from "../../../services/fetchData/fehtchData";
+import { updateReport } from "../../../assets/heleperFunctions/heleperFunctions";
 
-const OperationThree = ({ candidateName, companyName, onBackToSecond }) => {
+const OperationThree = ({
+  candidateName,
+  companyName,
+  onBackToSecond,
+  report,
+  onResetSteper,
+}) => {
+  const getDate = (date) => {
+    const day = +date.split(".")[0];
+    const month = +date.split(".")[1] - 1;
+    const year = +date.split(".")[2];
+    const newDate = new Date(Date.UTC(year, month, day));
+    return newDate;
+  };
+
+  const {
+    inputVal: interviewDate,
+    valOnChangeHandler: interviewDateOnchangeHandler,
+    resetVal: resetUnterviewDate,
+  } = useCreateForm(getDate(report[0].interviewDate));
+
+  const {
+    inputVal: phase,
+    valOnChangeHandler: phaseOnchangeHandler,
+    resetVal: resetPhase,
+  } = useCreateForm(report[0].phase);
+  const {
+    inputVal: status,
+    valOnChangeHandler: statusOnchangeHandler,
+    resetVal: resetStatus,
+  } = useCreateForm(report[0].status);
+  const {
+    inputVal: note,
+    valOnChangeHandler: noteOnchangeHandler,
+    resetVal: resetNote,
+  } = useCreateForm(report[0].note);
+
+  const resetInputs = () => {
+    resetStatus();
+    resetPhase();
+    resetUnterviewDate();
+    resetNote();
+  };
+
   const submitHandler = (e) => {
     e.preventDefault();
-    const data = {
-      companyName,
-      candidateName,
-    };
-    console.log(data);
+    const updatedReport = updateReport({
+      ...report[0],
+      note: note,
+      status: status,
+      phase: phase,
+      interviewDate: interviewDate,
+    });
+    fetchSoloReportAndUpdate(updatedReport.id, updatedReport);
+    resetInputs();
+    onResetSteper();
   };
 
   return (
@@ -21,19 +71,6 @@ const OperationThree = ({ candidateName, companyName, onBackToSecond }) => {
           <p>Company:</p>
           <h3>{companyName}</h3>
         </div>
-        <form action="" className="search__form" id="contact-form">
-          <div className="search__form-div">
-            <label className="search__form-tag">Search</label>
-            <input
-              type="text"
-              name="user_name"
-              required
-              placeholder="Search..."
-              className="search__form-input"
-              id="contact-name"
-            />
-          </div>
-        </form>
       </div>
       <div className="operations__form-fill">
         <form action="" id="contact-form" onSubmit={submitHandler}>
@@ -48,13 +85,20 @@ const OperationThree = ({ candidateName, companyName, onBackToSecond }) => {
                 required
                 className="search__form-input"
                 id="date"
+                value={interviewDate}
+                onChange={interviewDateOnchangeHandler}
               />
             </div>
             <div className="operations__form-div">
               <label htmlFor="tehnical" className="search__form-tag">
                 Phase:
               </label>
-              <select id="tehnical" name="tehnical">
+              <select
+                id="tehnical"
+                name="tehnical"
+                defaultValue={phase}
+                onChange={phaseOnchangeHandler}
+              >
                 <option value="cv">cv</option>
                 <option value="hr">hr</option>
                 <option value="tech">tech</option>
@@ -66,7 +110,12 @@ const OperationThree = ({ candidateName, companyName, onBackToSecond }) => {
               <label htmlFor="select" className="search__form-tag">
                 Select:
               </label>
-              <select id="select" name="select">
+              <select
+                id="select"
+                name="select"
+                defaultValue={status}
+                onChange={statusOnchangeHandler}
+              >
                 <option value="passed">Passed</option>
                 <option value="declined">Declined</option>
               </select>
@@ -74,7 +123,13 @@ const OperationThree = ({ candidateName, companyName, onBackToSecond }) => {
           </div>
           <div className="operations__form">
             <div className="operations__form-div">
-              <textarea name="message" rows="10" cols="30">
+              <textarea
+                name="message"
+                rows="10"
+                cols="30"
+                value={note}
+                onChange={noteOnchangeHandler}
+              >
                 Notes
               </textarea>
             </div>
@@ -92,12 +147,3 @@ const OperationThree = ({ candidateName, companyName, onBackToSecond }) => {
 };
 
 export default OperationThree;
-
-{
-  /* <!-- CONTENT 3 --> */
-}
-{
-  /*  */
-}
-
-//

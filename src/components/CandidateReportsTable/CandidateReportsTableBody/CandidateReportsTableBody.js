@@ -11,15 +11,19 @@ const CandidateReportsTableBody = ({ companies, onGetModalInfo }) => {
             <td data-label="Date">{interviewDate}</td>
             <td data-label="Status">{status}</td>
             <td>
-              <a
-                href="#"
+              <button
+                style={{
+                  background: "transparent",
+                  border: "none",
+                  cursor: "pointer",
+                }}
                 className="show-modal"
                 onClick={() => {
                   onGetModalInfo(companyId);
                 }}
               >
-                <MdVisibility />
-              </a>
+                <MdVisibility style={{ width: "25px", height: "25px" }} />
+              </button>
             </td>
           </tr>
         )

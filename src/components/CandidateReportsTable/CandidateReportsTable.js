@@ -86,60 +86,68 @@ const CandidateReportsTable = ({ companies, onGetModalInfo }) => {
     <section className="table container section hscroll">
       <table className="table">
         <tbody>
-          <th>
-            <span>
-              {companyIsSortedUp ? (
-                <MdKeyboardArrowDown
-                  onClick={() => {
-                    sortByCompanyName();
-                  }}
-                />
-              ) : (
-                <MdKeyboardArrowUp
-                  onClick={() => {
-                    sortByCompanyNameReverted();
-                  }}
-                />
-              )}
-              Company
-            </span>
-          </th>
-          <th>
-            <span>
-              {dateIsSorted ? (
-                <MdKeyboardArrowDown
-                  onClick={() => {
-                    sortByDate();
-                  }}
-                />
-              ) : (
-                <MdKeyboardArrowUp
-                  onClick={() => {
-                    sortByDateReverted();
-                  }}
-                />
-              )}
-              Interview&nbsp;Date
-            </span>
-          </th>
-          <th colSpan="2">
-            <span>
-              {statusIsSorted ? (
-                <MdKeyboardArrowDown
-                  onClick={() => {
-                    sortByPassedStatus();
-                  }}
-                />
-              ) : (
-                <MdKeyboardArrowUp
-                  onClick={() => {
-                    sortByPassedStatusReverted();
-                  }}
-                />
-              )}
-              Status
-            </span>
-          </th>
+          <tr>
+            <th>
+              <span>
+                {companyIsSortedUp ? (
+                  <MdKeyboardArrowDown
+                    style={{ cursor: "pointer", width: "25px", height: "25px" }}
+                    onClick={() => {
+                      sortByCompanyName();
+                    }}
+                  />
+                ) : (
+                  <MdKeyboardArrowUp
+                    style={{ cursor: "pointer", width: "25px", height: "25px" }}
+                    onClick={() => {
+                      sortByCompanyNameReverted();
+                    }}
+                  />
+                )}
+                Company
+              </span>
+            </th>
+            <th>
+              <span>
+                {dateIsSorted ? (
+                  <MdKeyboardArrowDown
+                    style={{ cursor: "pointer", width: "25px", height: "25px" }}
+                    onClick={() => {
+                      sortByDate();
+                    }}
+                  />
+                ) : (
+                  <MdKeyboardArrowUp
+                    style={{ cursor: "pointer", width: "25px", height: "25px" }}
+                    onClick={() => {
+                      sortByDateReverted();
+                    }}
+                  />
+                )}
+                Interview&nbsp;Date
+              </span>
+            </th>
+            <th colSpan="2">
+              <span>
+                {statusIsSorted ? (
+                  <MdKeyboardArrowDown
+                    style={{ cursor: "pointer", width: "25px", height: "25px" }}
+                    onClick={() => {
+                      sortByPassedStatus();
+                    }}
+                  />
+                ) : (
+                  <MdKeyboardArrowUp
+                    style={{ cursor: "pointer", width: "25px", height: "25px" }}
+                    onClick={() => {
+                      sortByPassedStatusReverted();
+                    }}
+                  />
+                )}
+                Status
+              </span>
+            </th>
+          </tr>
         </tbody>
         <CandidateReportsTableBody
           companies={companiesList}

@@ -411,6 +411,7 @@ textarea,
   padding: 2.5rem 1.5rem 3.5rem;
   text-align: center;
   box-shadow: 4px 4px 2px hsla(207, 24%, 8%, 0.4);
+  cursor: pointer;
 }
 .card__img {
   width: 90%;
@@ -458,7 +459,8 @@ textarea,
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: start;
+  /* align-items: start; */
+  align-items: flex-start;
   overflow: hidden;
 }
 .single__candidate-img {
@@ -634,7 +636,7 @@ textarea,
 }
 .operations__search {
   display: flex;
-  justify-content: end;
+  justify-content: flex-end;
   align-items: center;
 }
 .operations__card {
@@ -819,7 +821,7 @@ textarea,
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  align-items: start;
+  align-items: flex-start;
   padding-top: 1rem;
   gap: 2rem;
 }
@@ -936,7 +938,7 @@ textarea,
   }
   .operations__tab-container {
     flex-direction: row;
-    align-items: start;
+    align-items: flex-start;
     width: 100%;
   }
   .operations__tab--active {
@@ -1204,4 +1206,14 @@ textarea,
   margin-left: auto;
   display: flex;
   gap: 1rem;
+}
+
+.form-wraped {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.links-gap {
+  display: flex;
+  gap: 0.5rem;
 }

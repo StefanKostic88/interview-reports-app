@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router";
 
 import {
   MainContainer,
@@ -10,13 +11,13 @@ import {
   fetchReportsData,
   searchAndSubmitSoloCandidate,
   searchAndSubmitSoloCompany,
-  fetchCandidateDataUnsliced,
   fetchCompaniesDataUnsliced,
 } from "../../services/fetchData/fehtchData";
 
 import { convertWordToUpperCase } from "../../assets/heleperFunctions/heleperFunctions";
 
 const AdministrativePanelReports = () => {
+  const navigate = useNavigate();
   const [reports, setReports] = useState(null);
   const [candidateFilter, setCandidateFilter] = useState(null);
   const [companyFilter, setCompanyFilter] = useState(null);
@@ -68,10 +69,6 @@ const AdministrativePanelReports = () => {
       console.log("Candidate Array");
       setReports(() => [...candidateFilter]);
     }
-    // if (candidateFilter.length === 0 && companyFilter.length === 0) {
-    //   console.log("Empty");
-    //   // getReportsData();
-    // }
   };
 
   const getModalInfo = (id, companyId) => {
@@ -115,6 +112,9 @@ const AdministrativePanelReports = () => {
               />
             </div>
           </form>
+          <button className="btn" onClick={() => navigate("/panel/create")}>
+            Create New User
+          </button>
         </div>
       </section>
       <section className="section container" id="operation">
