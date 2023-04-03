@@ -1,12 +1,20 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import CustomInput from "../ui/CustomInput/CustomInput";
 
-const SearchHeader = ({ onFilterCandidate }) => {
+const SearchHeader = ({ onFilterCandidate, onResetInput }) => {
   const [searchUser, setSearchUser] = useState("");
   const onChangeHandler = (e) => {
     setSearchUser(() => e.target.value);
     onFilterCandidate(e.target.value);
   };
+
+  useEffect(() => {
+    const resetInout = () => {
+      setSearchUser(() => "");
+    };
+    resetInout();
+  }, [onResetInput]);
+
   return (
     <div className="home">
       <h1 className="section__title">Candidates</h1>

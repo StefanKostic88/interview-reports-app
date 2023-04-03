@@ -148,7 +148,6 @@ const CreateReport = ({ onRegistersubmit }) => {
       name: "select",
       label: "Select:",
       otions: [{ value: "passed" }, { value: "declined" }],
-      onChangeHandler: candidateStatusOnChangeHandler,
     },
   ];
 
@@ -166,7 +165,7 @@ const CreateReport = ({ onRegistersubmit }) => {
       !interviewDate
     )
       return;
-    console.log("NOOOOO");
+
     const newCandidate = generateUser(
       candidateName,
       candidateEmail,

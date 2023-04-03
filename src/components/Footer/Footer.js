@@ -1,4 +1,3 @@
-import { GoMarkGithub } from "react-icons/go";
 const year = new Date().getFullYear();
 
 const Footer = () => {

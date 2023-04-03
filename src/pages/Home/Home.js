@@ -7,7 +7,7 @@ import {
   ErrorModal,
 } from "../../components";
 
-const Home = ({ candidatesList }) => {
+const Home = ({ candidatesList, onResetInput }) => {
   const [filteredUsers, setFilteredUsers] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -37,7 +37,10 @@ const Home = ({ candidatesList }) => {
   return (
     <MainContainer>
       <section className="container section section__border" id="home">
-        <SearchHeader onFilterCandidate={filterCandidate} />
+        <SearchHeader
+          onFilterCandidate={filterCandidate}
+          onResetInput={onResetInput}
+        />
         {!isLoading ? (
           filteredUsers.length === 0 ? (
             <ErrorModal />

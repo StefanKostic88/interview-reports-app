@@ -89,17 +89,3 @@ const OperationTwo = ({
 };
 
 export default OperationTwo;
-
-{
-  /* <!-- CONTENT 2 --> */
-}
-
-// {candidateId: 84705028, candidateName: 'Cade Hammes', companyId: 74578008, companyName: 'Tesla', id: 19288593, …}
-
-{
-  /* <div className="operations__select-company-item">Company 2</div>
-<div className="operations__select-company-item">Company 3</div>
-<div className="operations__select-company-item">Company 4</div>
-<div className="operations__select-company-item">Company 5</div>
-<div className="operations__select-company-item">Company 6</div> */
-}

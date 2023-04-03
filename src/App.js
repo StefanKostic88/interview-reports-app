@@ -14,6 +14,7 @@ import { fetchCandidatsData } from "./services/fetchData/fehtchData";
 const App = () => {
   const [candidatesList, setCandidatesList] = useState([]);
   const [isSubmited, setIsSubmited] = useState(false);
+  const [resetInputSignal, setResetInputSignal] = useState(false);
 
   const registerSubmit = () => {
     setIsSubmited(() => true);
@@ -28,23 +29,36 @@ const App = () => {
     setCandidatesList(() => [...dataAddedFalseIsActive]);
   };
 
+  const refresh = () => {
+    setCandidatesList(() => []);
+    getCandidates();
+    setResetInputSignal(() => true);
+  };
+
   useEffect(() => {
     getCandidates();
   }, []);
-  // console.log(candidatesList);
 
   useEffect(() => {
     getCandidates();
     setIsSubmited(() => false);
   }, [isSubmited]);
+  useEffect(() => {
+    setResetInputSignal(() => false);
+  }, [resetInputSignal]);
 
   return (
     <>
       <Routes>
-        <Route path={"/"} element={<Root onRefresh={getCandidates} />}>
+        <Route path={"/"} element={<Root onRefresh={refresh} />}>
           <Route
             path={"/"}
-            element={<Home candidatesList={candidatesList} />}
+            element={
+              <Home
+                candidatesList={candidatesList}
+                onResetInput={resetInputSignal}
+              />
+            }
           />
           <Route
             path={"/candidate-reports/:id"}

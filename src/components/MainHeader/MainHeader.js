@@ -11,7 +11,7 @@ const MainHeader = ({ onRefresh }) => {
             Interviews Reports
           </Link>
         </div>
-        <div>
+        <div className="links-gap">
           {location.pathname === "/" && (
             <>
               <Link to={"/"} className="btn-alt">
@@ -23,7 +23,20 @@ const MainHeader = ({ onRefresh }) => {
             </>
           )}
 
-          {location.pathname !== "/" && (
+          {(location.pathname === "/panel/submit-report" ||
+            location.pathname === "/panel/create") && (
+            <>
+              <Link to={"/"} className="btn-alt">
+                Candidates
+              </Link>
+
+              <Link to={"/panel"} className="btn-alt">
+                Panels
+              </Link>
+            </>
+          )}
+
+          {location.pathname === "/panel" && (
             <>
               <Link to={"/panel"} className="btn-alt">
                 Reports
