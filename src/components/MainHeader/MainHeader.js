@@ -1,13 +1,13 @@
 import { Link, useLocation } from "react-router-dom";
 
-const MainHeader = () => {
+const MainHeader = ({ onRefresh }) => {
   const location = useLocation();
 
   return (
     <header className="header" id="header">
       <nav className="nav container">
         <div>
-          <Link to={"/"} className="nav__logo">
+          <Link to={"/"} className="nav__logo" onClick={() => onRefresh()}>
             Interviews Reports
           </Link>
         </div>

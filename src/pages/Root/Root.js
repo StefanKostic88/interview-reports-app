@@ -1,9 +1,9 @@
 import { Outlet } from "react-router";
 import { Footer, MainHeader, AppContainer } from "../../components";
-const Root = () => {
+const Root = ({ onRefresh }) => {
   return (
     <AppContainer>
-      <MainHeader />
+      <MainHeader onRefresh={onRefresh} />
       <Outlet />
       <Footer />
     </AppContainer>

@@ -66,3 +66,58 @@ export const generatePanelLIstInfo = ({
   companyName,
   companyId,
 });
+
+export const generateReports = ({
+  candidateName,
+  companyName,
+  interviewDate,
+  phase,
+  status,
+  note,
+  companyId,
+  candidateId,
+}) => {
+  return {
+    candidateId,
+    candidateName,
+    companyId,
+    companyName,
+    interviewDate,
+    phase,
+    status,
+    note,
+  };
+};
+
+export const generateUser = (name, email, birthday, education) => {
+  return {
+    name,
+    email,
+    birthday,
+    education,
+    // "avatar": "https://cdn.pixabay.com/photo/2016/08/31/11/54/icon-1633249_960_720.png",
+    // "id": 84852315
+  };
+};
+
+export const updateReport = ({
+  candidateId,
+  candidateName,
+  companyId,
+  companyName,
+  id,
+  interviewDate,
+  note,
+  phase,
+  status,
+}) => ({
+  candidateName,
+  companyName,
+  candidateId,
+  companyId,
+  id,
+  interviewDate,
+  note,
+  phase,
+  status,
+});

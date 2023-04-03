@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router";
 import CreateFormInput from "./CreateFormInput/CreateFormInput";
 import CreateFormOptions from "./CreateFormOptions/CreateFormOptions";
 
@@ -6,10 +7,12 @@ const CreateForm = ({
   optionsArr,
   messageChangeHandler,
   messagevalue,
+  onSubmit,
 }) => {
+  const navigate = useNavigate();
   return (
     <div className="operations__form-fill">
-      <form action="" id="contact-form" onSubmit={() => {}}>
+      <form action="" id="contact-form" onSubmit={onSubmit}>
         <div className="operations__form">
           {inputArr.map((input, index) => {
             if (index < 2) {
@@ -51,7 +54,7 @@ const CreateForm = ({
           </div>
         </div>
         <div className="operations__form">
-          <button className="btn-alt" onClick={() => () => {}}>
+          <button className="btn-alt" onClick={() => navigate("/panel")}>
             BACK
           </button>
           <button className="btn">SUBMIT</button>

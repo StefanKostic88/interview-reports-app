@@ -1,21 +1,15 @@
-import { useState } from "react";
 import {
   MainContainer,
   AdminstrativePanelOperations,
-  OperationThree,
   CreateForm,
-  CreateFormInput,
-  CreateFormOptions,
 } from "../../components";
 import {
-  generateNameAndReports,
   postUser,
+  generateAndPostReport,
 } from "../../services/fetchData/fehtchData";
-
+import { generateUser } from "../../assets/heleperFunctions/heleperFunctions";
 import useCreateForm from "../../hooks/use-create-form/useCreateForm";
 const CreateReport = ({ onRegistersubmit }) => {
-  const [submited, setIsSubmited] = useState(false);
-
   const {
     inputVal: candidateName,
     valOnChangeHandler: candidateNameOnChangeHandler,
@@ -43,11 +37,13 @@ const CreateReport = ({ onRegistersubmit }) => {
     valOnChangeHandler: interviewDateOnChangeHandler,
     resetVal: resetInterviewDate,
   } = useCreateForm(() => "");
+
   const {
     inputVal: candidatePhase,
     valOnChangeHandler: onCandidatePhaseChangeHandler,
     resetVal: resetCandidatePhase,
   } = useCreateForm(() => "cv");
+
   const {
     inputVal: candidateStatus,
     valOnChangeHandler: candidateStatusOnChangeHandler,
@@ -63,7 +59,19 @@ const CreateReport = ({ onRegistersubmit }) => {
     inputVal: companyName,
     valOnChangeHandler: companyNameOnChangeHandler,
     resetVal: resetCompanyName,
-  } = useCreateForm(() => "");
+  } = useCreateForm(() => "Google");
+
+  const resetAllInputs = () => {
+    resetCandidateName();
+    resetCandidateEmail();
+    resetCandidateEducation();
+    resetCandidateBirthday();
+    resetInterviewDate();
+    resetCandidatePhase();
+    resetCandidateStatus();
+    resetCandidateNotes();
+    resetCompanyName();
+  };
 
   const inputArr = [
     {
@@ -106,17 +114,22 @@ const CreateReport = ({ onRegistersubmit }) => {
       label: "Interview Date:",
       value: interviewDate,
     },
-    {
-      type: "text",
-      name: "company-name",
-      id: "company-name",
-      onChangeHandler: companyNameOnChangeHandler,
-      label: "Company Name:",
-      value: companyName,
-    },
   ];
 
   const optionsArr = [
+    {
+      onChangeHandler: companyNameOnChangeHandler,
+      id: "company-name",
+      name: "company-name",
+      label: "Company Name:",
+      otions: [
+        { value: "Google" },
+        { value: "Facebook" },
+        { value: "Microsoft" },
+        { value: "Tesla" },
+        { value: "Alphabet" },
+      ],
+    },
     {
       onChangeHandler: onCandidatePhaseChangeHandler,
       id: "tehnical",
@@ -141,92 +154,35 @@ const CreateReport = ({ onRegistersubmit }) => {
 
   const submitUser = (e) => {
     e.preventDefault();
-
-    // candidateName,candidateEmail,candidateEducation, candidateBirthDay
-
-    // resetCandidateName,resetCandidateEmail, resetCandidateEducation,resetCandidateBirthday
-
-    // console.log(
-    //   candidateName,
-    //   candidateEmail,
-    //   candidateBirthDay,
-    //   candidatePhase,
-    //   candidateStatus,
-    //   candidateNotes,
-    //   candidateEducation,
-    // companyName
-    // );
-
-    const report = generateReports(
+    if (
+      !candidateName &&
+      !candidateEmail &&
+      !candidateBirthDay &&
+      !candidateEducation &&
+      !companyName &&
+      !candidatePhase &&
+      !candidateStatus &&
+      !candidateNotes &&
+      !interviewDate
+    )
+      return;
+    console.log("NOOOOO");
+    const newCandidate = generateUser(
       candidateName,
-      companyName,
-      candidateBirthDay,
-      candidatePhase,
-      candidateStatus,
-      candidateNotes
-    );
-    const generateUser = (name, birthday, email, education) => {
-      return {
-        name,
-        birthday,
-        email,
-        education,
-        // "avatar": "https://cdn.pixabay.com/photo/2016/08/31/11/54/icon-1633249_960_720.png",
-        // "id": 84852315
-      };
-    };
-    const user = generateUser(
-      candidateName,
-      candidateBirthDay,
       candidateEmail,
+      candidateBirthDay,
       candidateEducation
     );
-    console.log(user);
-    // postUser(user);
-
-    const gen = async (user) => {
-      // const data = await postUser(user);
-      // console.log(data[data.lenght - 1]);
-      // getId();
-      const data = await generateNameAndReports();
-      console.log(data);
-    };
-    // gen();
-    // gen(user);
-    //generate candidate
-    //getUserId, name
-
-    //generate reposrt
-
-    onRegistersubmit();
-  };
-
-  const generateReports = (
-    candidateName,
-    companyName,
-    interviewDate,
-    phase,
-    status,
-    note,
-    companyId,
-    candidateId
-  ) => {
-    return {
-      candidateId,
-      candidateName,
-      companyId,
+    postUser(newCandidate);
+    generateAndPostReport(
       companyName,
-      interviewDate,
-      phase,
-      status,
-      note,
-    };
-  };
-
-  const getId = async (user) => {
-    const res = await fetch(`http://localhost:3333/api/candidates`);
-    const data = await res.json();
-    console.log(data);
+      candidatePhase,
+      candidateStatus,
+      candidateNotes,
+      interviewDate
+    );
+    onRegistersubmit();
+    resetAllInputs();
   };
 
   return (
@@ -238,6 +194,7 @@ const CreateReport = ({ onRegistersubmit }) => {
               <h3>Create User</h3>
             </div>
             <CreateForm
+              onSubmit={submitUser}
               inputArr={inputArr}
               optionsArr={optionsArr}
               messageChangeHandler={notesOnChangeHandler}

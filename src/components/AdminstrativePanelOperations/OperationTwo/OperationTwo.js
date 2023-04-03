@@ -10,7 +10,7 @@ const OperationTwo = ({
   const [companyListStyled, setCompanyListStyled] = useState([]);
   const [comName, setComname] = useState("");
   const [chosenId, setChosenId] = useState(null);
-  console.log(companyListData);
+
   useEffect(() => {
     if (!companyListData) return;
     setCompanyListStyled(() => [...companyListData]);

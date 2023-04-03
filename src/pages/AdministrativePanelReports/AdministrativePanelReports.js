@@ -11,7 +11,6 @@ import {
   fetchReportsData,
   searchAndSubmitSoloCandidate,
   searchAndSubmitSoloCompany,
-  fetchCandidateDataUnsliced,
   fetchCompaniesDataUnsliced,
 } from "../../services/fetchData/fehtchData";
 
@@ -70,10 +69,6 @@ const AdministrativePanelReports = () => {
       console.log("Candidate Array");
       setReports(() => [...candidateFilter]);
     }
-    // if (candidateFilter.length === 0 && companyFilter.length === 0) {
-    //   console.log("Empty");
-    //   // getReportsData();
-    // }
   };
 
   const getModalInfo = (id, companyId) => {
@@ -118,7 +113,7 @@ const AdministrativePanelReports = () => {
             </div>
           </form>
           <button className="btn" onClick={() => navigate("/panel/create")}>
-            Create User
+            Create New User
           </button>
         </div>
       </section>

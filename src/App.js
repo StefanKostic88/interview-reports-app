@@ -33,15 +33,15 @@ const App = () => {
   }, []);
   // console.log(candidatesList);
 
-  // useEffect(() => {
-  //   getCandidates();
-  //   setIsSubmited(() => false);
-  // }, [isSubmited]);
+  useEffect(() => {
+    getCandidates();
+    setIsSubmited(() => false);
+  }, [isSubmited]);
 
   return (
     <>
       <Routes>
-        <Route path={"/"} element={<Root />}>
+        <Route path={"/"} element={<Root onRefresh={getCandidates} />}>
           <Route
             path={"/"}
             element={<Home candidatesList={candidatesList} />}
