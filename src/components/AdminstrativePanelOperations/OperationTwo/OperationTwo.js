@@ -5,6 +5,7 @@ const OperationTwo = ({
   onCompanyClick,
   candidateName,
   onBackToFirst,
+  onCreateNewReport,
 }) => {
   const [btnIsActive, setBtnIsActive] = useState(false);
   const [companyListStyled, setCompanyListStyled] = useState([]);
@@ -68,7 +69,9 @@ const OperationTwo = ({
           </div>
         ))}
       </div>
-
+      <button className="btn" onClick={() => onCreateNewReport()}>
+        Add new Report
+      </button>
       <div className="left">
         <button className="btn" onClick={() => onBackToFirst()}>
           Back

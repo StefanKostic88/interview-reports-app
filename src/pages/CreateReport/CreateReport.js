@@ -175,8 +175,8 @@ const CreateReport = ({ onRegistersubmit }) => {
     postUser(newCandidate);
     generateAndPostReport(
       companyName,
-      candidatePhase,
       candidateStatus,
+      candidatePhase,
       candidateNotes,
       interviewDate
     );

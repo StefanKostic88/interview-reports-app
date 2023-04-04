@@ -21,6 +21,7 @@ const CandidateReports = () => {
     const getCandidateInfo = async () => {
       const info = await fetchCandidateData(candidateId);
       const candidateCompanies = await fetchCompaniesData(candidateId);
+
       setCandidateInfo(() => ({ ...info, companies: [...candidateCompanies] }));
     };
     getCandidateInfo();
