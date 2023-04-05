@@ -1,8 +1,14 @@
+import { useState } from "react";
+
 const OperationTwoCreateReport = ({
   newCompanies,
   candidateName,
   onBackToFirst,
+  onCompanyClick,
+  onGetCompanyTest,
 }) => {
+  const [comname, setComname] = useState("");
+  const [chosenId, setChosenId] = useState(null);
   if (!newCompanies) return;
 
   return (
@@ -27,20 +33,24 @@ const OperationTwoCreateReport = ({
         </form>
       </div>
       <div className="operations__card-list operations__select-company">
-        {newCompanies.map(({ name, id, isActive }) => (
+        {newCompanies.map(({ name, id, isActive, candidateId }) => (
           <div
             key={id}
             className={`operations__select-company-item ${
               isActive ? "active" : ""
             }`}
+            onClick={() => {
+              onGetCompanyTest(name);
+              setComname(name);
+              setChosenId(() => id);
+            }}
             // onClick={() => {
             //   setBtnIsActive(() => true);
-            //   setChosenId(() => companyId);
             //   setComname(() => companyName);
             //   setActiveStatus(companyId);
             // }}
           >
-            {name}
+            {name} {console.log(candidateId)}
           </div>
         ))}
       </div>
@@ -54,7 +64,7 @@ const OperationTwoCreateReport = ({
           <button
             className="btn "
             onClick={() => {
-              // onCompanyClick(chosenId, comName);
+              onCompanyClick(chosenId, comname);
             }}
           >
             Next

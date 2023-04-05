@@ -12,6 +12,7 @@ import {
   searchAndSubmitSoloCandidate,
   searchAndSubmitSoloCompany,
   fetchCompaniesDataUnsliced,
+  deleteReports,
 } from "../../services/fetchData/fehtchData";
 
 import { convertWordToUpperCase } from "../../assets/heleperFunctions/heleperFunctions";
@@ -82,6 +83,13 @@ const AdministrativePanelReports = () => {
     setModalInfo(() => {});
   };
 
+  const removeReport = async (id) => {
+    console.log(id);
+    await deleteReports(id);
+    const data = await fetchReportsData();
+    setReports(() => [...data]);
+  };
+
   useEffect(() => {
     getReportsData();
   }, []);
@@ -121,6 +129,7 @@ const AdministrativePanelReports = () => {
         <AdministrativePanelList
           reportsData={reports}
           onGetModalInfo={getModalInfo}
+          onDeleteReport={removeReport}
         />
       </section>
       {isOpen && (

@@ -1,7 +1,11 @@
 import { useEffect, useState } from "react";
 import OperationOneCardItem from "./OperationOneCardItem/OperationOneCardItem";
 
-const OperationOne = ({ candidatesList, onCandidateClick }) => {
+const OperationOne = ({
+  candidatesList,
+  onCandidateClick,
+  onCandidateName,
+}) => {
   const [btnIsActive, setBtnIsActive] = useState(false);
   const [chosenId, setChosenId] = useState(null);
 
@@ -48,6 +52,8 @@ const OperationOne = ({ candidatesList, onCandidateClick }) => {
               setBtnIsActive(() => true);
               setChosenId(() => candidate.id);
               setActiveStyleStatus(candidate.id);
+              onCandidateName(candidate.name);
+              //
             }}
           />
         ))}

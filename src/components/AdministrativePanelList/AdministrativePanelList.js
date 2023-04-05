@@ -1,6 +1,10 @@
 import AdministrativePanelLIstItem from "./AdministrativePanelLIstItem/AdministrativePanelLIstItem";
 
-const AdministrativePanelList = ({ reportsData, onGetModalInfo }) => {
+const AdministrativePanelList = ({
+  reportsData,
+  onGetModalInfo,
+  onDeleteReport,
+}) => {
   if (!reportsData) return;
   return (
     <section className="container section reports__list" id="reports-list">
@@ -9,6 +13,7 @@ const AdministrativePanelList = ({ reportsData, onGetModalInfo }) => {
           {...report}
           key={`${report.companyId}-${index}`}
           onGetModalInfo={onGetModalInfo}
+          onDeleteReport={onDeleteReport}
         />
       ))}
     </section>

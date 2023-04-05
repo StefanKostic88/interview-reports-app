@@ -58,13 +58,15 @@ export const generatePanelLIstInfo = ({
   status,
   companyName,
   companyId,
+  id,
 }) => ({
   candidateName,
   candidateId,
-  interviewDate: convertDate(interviewDate),
+  interviewDate: interviewDate ? convertDate(interviewDate) : null,
   status,
   companyName,
   companyId,
+  id,
 });
 
 export const generateReports = ({
@@ -116,6 +118,28 @@ export const updateReport = ({
   candidateId,
   companyId,
   id,
+  interviewDate,
+  note,
+  phase,
+  status,
+});
+
+export const createRerport = ({
+  candidateId,
+  candidateName,
+  companyId,
+  companyName,
+  // id,
+  interviewDate,
+  note,
+  phase,
+  status,
+}) => ({
+  candidateName,
+  companyName,
+  candidateId,
+  companyId,
+  // id,
   interviewDate,
   note,
   phase,
