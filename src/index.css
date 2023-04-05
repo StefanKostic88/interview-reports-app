@@ -844,6 +844,12 @@ textarea,
 /*=============== FOOTER ===============*/
 .footer {
   text-align: center;
+  /* position: fixed;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: var(--header-color);
+  width: 100%; */
 }
 .footer__copy {
   display: block;
