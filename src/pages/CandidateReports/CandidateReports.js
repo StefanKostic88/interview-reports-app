@@ -21,6 +21,7 @@ const CandidateReports = () => {
     const getCandidateInfo = async () => {
       const info = await fetchCandidateData(candidateId);
       const candidateCompanies = await fetchCompaniesData(candidateId);
+
       setCandidateInfo(() => ({ ...info, companies: [...candidateCompanies] }));
     };
     getCandidateInfo();
@@ -40,16 +41,21 @@ const CandidateReports = () => {
     setIsOpen(() => false);
     setModalInfo(() => ({}));
   };
+  console.log(id);
 
   return (
     <MainContainer>
       <CandidateReportsInfo
         {...{ id, email, name, avatar, birthday, education }}
       />
-      <CandidateReportsTable
-        companies={companies}
-        onGetModalInfo={getModalInfo}
-      />
+      {companies.length === 0 ? (
+        <div>No companies data available</div>
+      ) : (
+        <CandidateReportsTable
+          companies={companies}
+          onGetModalInfo={getModalInfo}
+        />
+      )}
       {isOpen && (
         <CandidateReportsModalWindow {...modalInfo} onCloseModal={closeModal} />
       )}

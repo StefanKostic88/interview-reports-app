@@ -5,11 +5,13 @@ const OperationTwo = ({
   onCompanyClick,
   candidateName,
   onBackToFirst,
+  onCreateNewReport,
 }) => {
   const [btnIsActive, setBtnIsActive] = useState(false);
   const [companyListStyled, setCompanyListStyled] = useState([]);
   const [comName, setComname] = useState("");
-  const [chosenId, setChosenId] = useState(null);
+  // const [chosenId, setChosenId] = useState(null);
+  const [chosenReportsId, setChosenReportsId] = useState(null);
 
   useEffect(() => {
     if (!companyListData) return;
@@ -17,7 +19,6 @@ const OperationTwo = ({
   }, [companyListData]);
 
   const setActiveStatus = (id) => {
-    console.log(id);
     const updatedArr = companyListStyled.map((company) => {
       if (company.companyId === id) {
         return { ...company, isActive: true };
@@ -51,7 +52,7 @@ const OperationTwo = ({
         </form>
       </div>
       <div className="operations__card-list operations__select-company">
-        {companyListStyled.map(({ companyName, companyId, isActive }) => (
+        {companyListStyled.map(({ companyName, companyId, isActive, id }) => (
           <div
             key={companyId}
             className={`operations__select-company-item ${
@@ -59,16 +60,19 @@ const OperationTwo = ({
             }`}
             onClick={() => {
               setBtnIsActive(() => true);
-              setChosenId(() => companyId);
+              // setChosenId(() => companyId);
               setComname(() => companyName);
               setActiveStatus(companyId);
+              setChosenReportsId(() => id);
             }}
           >
             {companyName}
           </div>
         ))}
       </div>
-
+      <button className="btn" onClick={() => onCreateNewReport()}>
+        Add new Report
+      </button>
       <div className="left">
         <button className="btn" onClick={() => onBackToFirst()}>
           Back
@@ -77,7 +81,7 @@ const OperationTwo = ({
           <button
             className="btn "
             onClick={() => {
-              onCompanyClick(chosenId, comName);
+              onCompanyClick(chosenReportsId, comName);
             }}
           >
             Next

@@ -7,6 +7,7 @@ import {
   AdministrativePanelReports,
   AdnministrativePanelSubmit,
   CreateReport,
+  ErrorPage,
 } from "./pages";
 
 import { fetchCandidatsData } from "./services/fetchData/fehtchData";
@@ -75,6 +76,9 @@ const App = () => {
               <AdnministrativePanelSubmit candidatesList={candidatesList} />
             }
           />
+        </Route>
+        <Route path={"*"} element={<Root />}>
+          <Route path={"*"} element={<ErrorPage />} />
         </Route>
       </Routes>
     </>

@@ -149,3 +149,12 @@ export const fetchSoloReportAndUpdate = async (id, obj) => {
     body: JSON.stringify(obj),
   });
 };
+
+export const deleteReports = async (id) => {
+  await fetch(`http://localhost:3333/api/reports/${id}`, {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+};

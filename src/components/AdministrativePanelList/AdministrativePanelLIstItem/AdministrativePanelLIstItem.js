@@ -8,6 +8,8 @@ const AdministrativePanelLIstItem = ({
   status,
   onGetModalInfo,
   companyId,
+  id,
+  onDeleteReport,
 }) => {
   return (
     <div className="reports-item">
@@ -36,7 +38,12 @@ const AdministrativePanelLIstItem = ({
         >
           <MdRemoveRedEye style={{ width: "30px", height: "30px" }} />
         </button>
-        <button className="delete-reports btn-transparent">
+        <button
+          className="delete-reports btn-transparent"
+          onClick={() => {
+            onDeleteReport(id);
+          }}
+        >
           <MdClose />
         </button>
       </div>
