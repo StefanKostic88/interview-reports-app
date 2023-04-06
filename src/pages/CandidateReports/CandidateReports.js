@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useParams } from "react-router";
 import {
   MainContainer,
@@ -11,11 +11,20 @@ import {
   fetchCompaniesData,
 } from "../../services/fetchData/fehtchData";
 
+import { useCandidateReports } from "../../hooks";
+
 const CandidateReports = () => {
   const { id: candidateId } = useParams();
-  const [candidateInfo, setCandidateInfo] = useState(null);
-  const [isOpen, setIsOpen] = useState(false);
-  const [modalInfo, setModalInfo] = useState({});
+
+  const {
+    candidateInfo,
+    isOpen,
+    modalInfo,
+    closeModal,
+    setCandidateInfo,
+    setIsOpen,
+    setModalInfo,
+  } = useCandidateReports();
 
   useEffect(() => {
     const getCandidateInfo = async () => {
@@ -27,21 +36,15 @@ const CandidateReports = () => {
     getCandidateInfo();
   }, []);
 
-  if (!candidateInfo) return;
-  const { id, email, name, avatar, birthday, education, companies } =
-    candidateInfo;
-
   const getModalInfo = (id) => {
     const data = companies.find((company) => company.companyId === id);
     setModalInfo(() => ({ ...data }));
     setIsOpen(() => true);
   };
 
-  const closeModal = () => {
-    setIsOpen(() => false);
-    setModalInfo(() => ({}));
-  };
-  console.log(id);
+  if (!candidateInfo) return;
+  const { id, email, name, avatar, birthday, education, companies } =
+    candidateInfo;
 
   return (
     <MainContainer>
@@ -64,3 +67,11 @@ const CandidateReports = () => {
 };
 
 export default CandidateReports;
+
+// const [candidateInfo, setCandidateInfo] = useState(null);
+// const [isOpen, setIsOpen] = useState(false);
+// const [modalInfo, setModalInfo] = useState({});
+// const closeModal = () => {
+//   setIsOpen(() => false);
+//   setModalInfo(() => ({}));
+// };
