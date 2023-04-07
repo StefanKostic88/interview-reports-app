@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 // import { fetchCandidatsData } from "../../services/fetchData/fehtchData";
 
 const useRootPage = (cb) => {
+  const [firstLoad, setFirstLoad] = useState(true);
   const [list, setList] = useState([]);
   const [isSubmited, setIsSubmited] = useState(false);
   const [resetInputSignal, setResetInputSignal] = useState(false);
@@ -27,6 +28,13 @@ const useRootPage = (cb) => {
 
   useEffect(() => {
     getCandidates();
+
+    const timer = setTimeout(() => {
+      setFirstLoad(() => false);
+    }, 1500);
+    return () => {
+      clearTimeout(timer);
+    };
   }, []);
 
   useEffect(() => {
@@ -42,6 +50,7 @@ const useRootPage = (cb) => {
     resetInputSignal,
     registerSubmit,
     refresh,
+    firstLoad,
   };
 };
 

@@ -5,3 +5,4 @@ export { default as AdministrativePanelReports } from "./AdministrativePanelRepo
 export { default as AdnministrativePanelSubmit } from "./AdnministrativePanelSubmit/AdnministrativePanelSubmit";
 export { default as CreateReport } from "./CreateReport/CreateReport";
 export { default as ErrorPage } from "./ErrorPage/ErrorPage";
+export { default as Loading } from "./Loading/Loading";

@@ -832,7 +832,8 @@ textarea,
   padding: 2rem;
   border-radius: 5px;
   box-shadow: 0 3rem 5rem rgba(0, 0, 0, 0.3);
-  z-index: var(--z-fixed);
+  /* z-index: var(--z-fixed); */
+  z-index: 1500;
 }
 .modal h2 {
   padding-bottom: 2rem;
@@ -846,7 +847,8 @@ textarea,
   height: 100%;
   background-color: rgba(0, 0, 0, 0.6);
   backdrop-filter: blur(3px);
-  z-index: var(--z-tooltip);
+  /* z-index: var(--z-tooltip); */
+  z-index: 1000;
 }
 .modal__info {
   display: flex;
