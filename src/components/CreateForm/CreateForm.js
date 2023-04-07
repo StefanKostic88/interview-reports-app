@@ -8,6 +8,7 @@ const CreateForm = ({
   messageChangeHandler,
   messagevalue,
   onSubmit,
+  formDisabled,
 }) => {
   const navigate = useNavigate();
   return (
@@ -57,7 +58,9 @@ const CreateForm = ({
           <button className="btn-alt" onClick={() => navigate("/panel")}>
             BACK
           </button>
-          <button className="btn">SUBMIT</button>
+          <button className={`${formDisabled ? "btn" : "btn-disabled"}`}>
+            SUBMIT
+          </button>
         </div>
       </form>
     </div>

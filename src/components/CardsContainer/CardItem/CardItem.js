@@ -1,9 +1,13 @@
 import { useNavigate } from "react-router";
 
-const CardItem = ({ id, email, name, avatar }) => {
+const CardItem = ({ id, email, name, avatar, animation }) => {
+  // console.log(animation);
   const navigate = useNavigate();
   return (
-    <div className="card" onClick={() => navigate(`/candidate-reports/:${id}`)}>
+    <div
+      className="card card-animation"
+      onClick={() => navigate(`/candidate-reports/:${id}`)}
+    >
       <div className="card__border">
         <div className="card__perfil">
           <img src={avatar} alt={`${avatar}-${id}`} className="card__img" />

@@ -112,8 +112,8 @@ export const getCompanyIdAndName = async (companyName) => {
 
 export const generateAndPostReport = async (
   companyNameInput,
-  candidatePhaseInput,
   candidateStatusInput,
+  candidatePhaseInput,
   candidateNotesInput,
   interviewDateInput
 ) => {
