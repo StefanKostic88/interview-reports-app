@@ -262,6 +262,21 @@ body.dark-theme {
   transition: all 0.3s;
 }
 
+.btn-disabled {
+  width: max-content;
+  display: inline-flex;
+  align-items: center;
+  column-gap: 0.5rem;
+  color: var(--white-color);
+  padding: 1rem 2rem;
+  border-radius: 0.5rem;
+  font-size: var(--normal-font-size);
+  background-color: var(--first-color);
+  border: 2px solid var(--text-color-light);
+  text-transform: uppercase;
+  cursor: pointer;
+  opacity: 0.2;
+}
 /*=============== HEADER & NAV ===============*/
 .header {
   width: 100%;
@@ -447,6 +462,22 @@ textarea,
 .card__email {
   font-size: var(--smaller-font-size);
   font-weight: 500;
+}
+
+.card-animation {
+  animation-name: scaleUp;
+  animation-duration: 300ms;
+  animation-fill-mode: forwards;
+  transform: scale(0);
+}
+
+@keyframes scaleUp {
+  0% {
+    transform: scale(0);
+  }
+  100% {
+    transform: scale(1);
+  }
 }
 
 /*=============== SINGLE CANDIDATE ===============*/
@@ -801,7 +832,8 @@ textarea,
   padding: 2rem;
   border-radius: 5px;
   box-shadow: 0 3rem 5rem rgba(0, 0, 0, 0.3);
-  z-index: var(--z-fixed);
+  /* z-index: var(--z-fixed); */
+  z-index: 1500;
 }
 .modal h2 {
   padding-bottom: 2rem;
@@ -815,7 +847,8 @@ textarea,
   height: 100%;
   background-color: rgba(0, 0, 0, 0.6);
   backdrop-filter: blur(3px);
-  z-index: var(--z-tooltip);
+  /* z-index: var(--z-tooltip); */
+  z-index: 1000;
 }
 .modal__info {
   display: flex;
@@ -1222,4 +1255,10 @@ textarea,
 .links-gap {
   display: flex;
   gap: 0.5rem;
+}
+
+.error-modal {
+  display: flex;
+  justify-content: center;
+  margin-top: 4rem;
 }

@@ -23,3 +23,4 @@ export { default as CreateFormInput } from "./CreateForm/CreateFormInput/CreateF
 export { default as CreateFormOptions } from "./CreateForm/CreateFormOptions/CreateFormOptions";
 export { default as OperationThreeCreateReport } from "./AdminstrativePanelOperations/OperationThreeCreateReport/OperationThreeCreateReport";
 export { default as OperationTwoCreateReport } from "./AdminstrativePanelOperations/OperationTwoCreateReport/OperationTwoCreateReport";
+export { default as CustomForm } from "./ui/CustomForm/CustomForm";

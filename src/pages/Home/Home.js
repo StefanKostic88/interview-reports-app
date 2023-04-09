@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react";
 import {
   MainContainer,
   SearchHeader,
@@ -6,33 +5,14 @@ import {
   LoaderModal,
   ErrorModal,
 } from "../../components";
+import { useHomePage } from "../../hooks";
 
 const Home = ({ candidatesList, onResetInput }) => {
-  const [filteredUsers, setFilteredUsers] = useState(null);
-  const [isLoading, setIsLoading] = useState(true);
-
-  const filterCandidate = (candidateName) => {
-    const candidateConverted = candidateName.toLowerCase();
-    const data = candidatesList.filter((candidate) =>
-      candidate.name.toLowerCase().startsWith(candidateConverted)
-    );
-    setFilteredUsers(() => [...data]);
-  };
-
-  useEffect(() => {
-    setFilteredUsers(() => [...candidatesList]);
-    setIsLoading(() => false);
-  }, [candidatesList]);
-
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setIsLoading(() => false);
-    }, 500);
-    return () => {
-      clearTimeout(timer);
-      setIsLoading(() => true);
-    };
-  }, [filteredUsers]);
+  const {
+    filteredList: filteredUsers,
+    isLoading,
+    filterCandidate,
+  } = useHomePage(candidatesList);
 
   return (
     <MainContainer>

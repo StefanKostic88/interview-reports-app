@@ -5,9 +5,6 @@ const AdminstrativePanelOperations = ({
   tabIsActive,
   isCreating = true,
 }) => {
-  // console.log(tabIsActive);
-  // console.log(tabIsActive === 1 ? "operations__tab--active" : "");
-
   return (
     <div className="operations">
       <div className="operations__tab-container">

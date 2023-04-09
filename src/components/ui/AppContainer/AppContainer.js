@@ -3,6 +3,3 @@ const AppContainer = ({ children }) => {
 };
 
 export default AppContainer;
-
-//1024
-// margin 0 auto
