@@ -145,3 +145,50 @@ export const createRerport = ({
   phase,
   status,
 });
+
+export const sortCompanyFunc = (arr, sortUp = true) => {
+  if (sortUp) {
+    return arr.sort((a, b) => {
+      if (a.companyName < b.companyName) {
+        return -1;
+      }
+    });
+  } else {
+    return arr.sort((a, b) => {
+      if (a.companyName > b.companyName) {
+        return -1;
+      }
+    });
+  }
+};
+export const sortStatusFunc = (arr, sortUp = true) => {
+  if (sortUp) {
+    return arr.sort((a, b) => {
+      if (a.status < b.status) {
+        return -1;
+      }
+    });
+  } else {
+    return arr.sort((a, b) => {
+      if (a.status > b.status) {
+        return -1;
+      }
+    });
+  }
+};
+
+export const sortDateFunc = (arr, sortUp = true) => {
+  if (sortUp) {
+    return arr.sort((a, b) => {
+      if (a.interviewDate < b.interviewDate) {
+        return -1;
+      }
+    });
+  } else {
+    return arr.sort((a, b) => {
+      if (a.interviewDate > b.interviewDate) {
+        return -1;
+      }
+    });
+  }
+};
