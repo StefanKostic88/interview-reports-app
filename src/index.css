@@ -187,6 +187,7 @@ body.dark-theme {
 .main {
   overflow: hidden; /* For animation */
   padding-top: 6rem;
+  min-height: 45rem;
 }
 .btn {
   width: max-content;
@@ -1261,4 +1262,9 @@ textarea,
   display: flex;
   justify-content: center;
   margin-top: 4rem;
+}
+
+.user-created {
+  min-height: 25rem;
+  text-align: center;
 }

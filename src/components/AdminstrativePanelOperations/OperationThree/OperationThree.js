@@ -1,6 +1,9 @@
 import useCreateForm from "../../../hooks/use-create-form/useCreateForm";
 import { fetchSoloReportAndUpdate } from "../../../services/fetchData/fehtchData";
-import { updateReport } from "../../../assets/heleperFunctions/heleperFunctions";
+import {
+  updateReport,
+  getDate,
+} from "../../../assets/heleperFunctions/heleperFunctions";
 import OperationThreeTemplate from "../OperationThreeTemplate/OperationThreeTemplate";
 
 const OperationThree = ({
@@ -9,23 +12,22 @@ const OperationThree = ({
   onBackToSecond,
   report,
   onResetSteper,
+  onGetSubmitMsg,
 }) => {
-  console.log(report);
-  const getDate = (date) => {
-    let day = +date.split(".")[0];
-    let month = +date.split(".")[1];
-    const year = +date.split(".")[2];
+  // const getDate = (date) => {
+  //   let day = +date.split(".")[0];
+  //   let month = +date.split(".")[1];
+  //   const year = +date.split(".")[2];
 
-    if (month.toString().length === 1) {
-      month = "0" + month;
-      // console.log(month);
-    }
-    if (day.toString().length === 1) {
-      day = "0" + day;
-    }
+  //   if (month.toString().length === 1) {
+  //     month = "0" + month;
+  //   }
+  //   if (day.toString().length === 1) {
+  //     day = "0" + day;
+  //   }
 
-    return `${year}-${month}-${day}`;
-  };
+  //   return `${year}-${month}-${day}`;
+  // };
 
   const {
     inputVal: interviewDate,
@@ -70,6 +72,7 @@ const OperationThree = ({
     fetchSoloReportAndUpdate(updatedReport.id, updatedReport);
     resetInputs();
     onResetSteper();
+    onGetSubmitMsg("Report Updated");
   };
 
   return (

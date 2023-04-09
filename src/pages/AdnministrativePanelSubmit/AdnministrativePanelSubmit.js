@@ -6,6 +6,7 @@ import {
   OperationTwoCreateReport,
   OperationThree,
   OperationThreeCreateReport,
+  UserCreatedMessage,
 } from "../../components";
 
 import useAdministrativePanelSubmit from "../../hooks/use-adminstritive-panel-submit/useAdministrativePanelSubmit";
@@ -28,10 +29,14 @@ const AdnministrativePanelSubmit = ({ candidatesList }) => {
     backToSecond,
     resetSteper,
     createNewReport,
+    getSubmitMsg,
+    reportMsg,
+    showMsgIsVisible,
   } = useAdministrativePanelSubmit();
 
   return (
     <MainContainer>
+      {showMsgIsVisible && <UserCreatedMessage msg={reportMsg} />}
       <section className="section container" id="operation">
         <AdminstrativePanelOperations tabIsActive={activeTab}>
           {activeTab === 1 && (
@@ -62,6 +67,7 @@ const AdnministrativePanelSubmit = ({ candidatesList }) => {
           {activeTab === 3 &&
             (isCreating ? (
               <OperationThreeCreateReport
+                onGetSubmitMsg={getSubmitMsg}
                 candidateName={candidateName}
                 companyName={companyName}
                 newReport={report}
@@ -70,6 +76,7 @@ const AdnministrativePanelSubmit = ({ candidatesList }) => {
               />
             ) : (
               <OperationThree
+                onGetSubmitMsg={getSubmitMsg}
                 candidateName={candidateName}
                 companyName={companyName}
                 report={report}

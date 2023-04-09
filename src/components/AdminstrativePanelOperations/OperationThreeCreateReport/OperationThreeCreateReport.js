@@ -9,8 +9,8 @@ const OperationThreeCreateReport = ({
   newReport,
   onBackToSecond,
   onResetSteper,
+  onGetSubmitMsg,
 }) => {
-  console.log(newReport);
   const dateNow = new Date();
   const getDate = (date) => {
     let day = +date.getDate();
@@ -83,6 +83,7 @@ const OperationThreeCreateReport = ({
     nesto(updatedReport);
     resetInputs();
     onResetSteper();
+    onGetSubmitMsg("Report Created");
   };
 
   // console.log(interviewDate, phase, status, note, "NEW");

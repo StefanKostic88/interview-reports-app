@@ -4,6 +4,7 @@ import { useMainHeader } from "../../hooks";
 const MainHeader = ({ onRefresh }) => {
   const { hideLogoHandler, showCandidates, showPanel, showPanelSubmit } =
     useMainHeader();
+  window.scrollTo(0, 0);
   return (
     <header className="header" id="header">
       <nav className="nav container">
