@@ -1256,3 +1256,9 @@ textarea,
   display: flex;
   gap: 0.5rem;
 }
+
+.error-modal {
+  display: flex;
+  justify-content: center;
+  margin-top: 4rem;
+}

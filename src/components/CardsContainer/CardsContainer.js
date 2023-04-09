@@ -11,7 +11,7 @@ const CardsContainer = ({ candidatesList }) => {
       candidatesList.forEach((card, index) => {
         const cardItemStyled = new Promise((res, rej) => {
           timer = setTimeout(() => {
-            res({ ...card, animation: true });
+            res({ ...card });
           }, index * 50);
         });
         cardItemStyled.then((newCard) =>

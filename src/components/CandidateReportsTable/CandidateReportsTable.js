@@ -1,86 +1,106 @@
-import { useEffect, useState } from "react";
+import { useEffect, useReducer, useState } from "react";
 import { MdKeyboardArrowDown, MdKeyboardArrowUp } from "react-icons/md";
 import CandidateReportsTableBody from "./CandidateReportsTableBody/CandidateReportsTableBody";
+import {
+  initialSortedState,
+  dispatchActionTypes,
+  sortedReducer,
+} from "../../assets/candidateReportsTableData/candidateReportsTableData";
 
 const CandidateReportsTable = ({ companies, onGetModalInfo }) => {
   const [companiesList, setCompaniesList] = useState([]);
-  const [companyIsSortedUp, setCompanyIsSortedUp] = useState(true);
-  const [dateIsSorted, setDateIsSorted] = useState(true);
-  const [statusIsSorted, setStatusIsSorted] = useState(true);
+  const [sortedState, dispatchSortedState] = useReducer(
+    sortedReducer,
+    initialSortedState
+  );
+
+  const sortCompanyFunc = (arr, sortUp = true) => {
+    if (sortUp) {
+      return arr.sort((a, b) => {
+        if (a.companyName < b.companyName) {
+          return -1;
+        }
+      });
+    } else {
+      return arr.sort((a, b) => {
+        if (a.companyName > b.companyName) {
+          return -1;
+        }
+      });
+    }
+  };
+  const sortStatusFunc = (arr, sortUp = true) => {
+    if (sortUp) {
+      return arr.sort((a, b) => {
+        if (a.status < b.status) {
+          return -1;
+        }
+      });
+    } else {
+      return arr.sort((a, b) => {
+        if (a.status > b.status) {
+          return -1;
+        }
+      });
+    }
+  };
+
+  const sortDateFunc = (arr, sortUp = true) => {
+    if (sortUp) {
+      return arr.sort((a, b) => {
+        if (a.interviewDate < b.interviewDate) {
+          return -1;
+        }
+      });
+    } else {
+      return arr.sort((a, b) => {
+        if (a.interviewDate > b.interviewDate) {
+          return -1;
+        }
+      });
+    }
+  };
 
   const sortByCompanyName = () => {
-    const sotrted = companies.sort((a, b) => {
-      if (a.companyName < b.companyName) {
-        return -1;
-      }
-    });
-    setCompaniesList(() => [...sotrted]);
-    setCompanyIsSortedUp(() => false);
-    setDateIsSorted(() => true);
-    setStatusIsSorted(() => true);
+    const sorted = sortCompanyFunc(companies);
+    setCompaniesList(() => [...sorted]);
+    dispatchSortedState({ type: dispatchActionTypes.COMPANY_SORTED_UP });
   };
   const sortByCompanyNameReverted = () => {
-    const sotrted = companies.sort((a, b) => {
-      if (a.companyName > b.companyName) {
-        return -1;
-      }
-    });
+    const sotrted = sortCompanyFunc(companies, false);
     setCompaniesList(() => [...sotrted]);
-    setCompanyIsSortedUp(() => true);
-    setDateIsSorted(() => true);
-    setStatusIsSorted(() => true);
+    dispatchSortedState({ type: dispatchActionTypes.COMPANY_SORTED_DOWN });
   };
 
   const sortByPassedStatus = () => {
-    const sotrted = companies.sort((a, b) => {
-      if (a.status > b.status) {
-        return -1;
-      }
-    });
-    setCompaniesList(() => [...sotrted]);
-    setStatusIsSorted(() => false);
-    setDateIsSorted(() => true);
-    setCompanyIsSortedUp(() => true);
+    const sorted = sortStatusFunc(companies);
+    setCompaniesList(() => [...sorted]);
+    dispatchSortedState({ type: dispatchActionTypes.STATUS_SORTED_UP });
   };
   const sortByPassedStatusReverted = () => {
-    const sotrted = companies.sort((a, b) => {
-      if (a.status < b.status) {
-        return -1;
-      }
-    });
-    setCompaniesList(() => [...sotrted]);
-    setStatusIsSorted(() => true);
-    setDateIsSorted(() => true);
-    setCompanyIsSortedUp(() => true);
+    const sorted = sortStatusFunc(companies, false);
+    setCompaniesList(() => [...sorted]);
+    dispatchSortedState({ type: dispatchActionTypes.STATUS_SORTED_DOWN });
   };
 
   const sortByDate = () => {
-    const sotrted = companies.sort((a, b) => {
-      if (a.interviewDate < b.interviewDate) {
-        return -1;
-      }
-    });
-    setCompaniesList(() => [...sotrted]);
-    setDateIsSorted(() => false);
-    setStatusIsSorted(() => true);
-    setCompanyIsSortedUp(() => true);
+    const sorted = sortDateFunc(companies);
+    setCompaniesList(() => [...sorted]);
+    dispatchSortedState({ type: dispatchActionTypes.DATE_SORTED_UP });
   };
   const sortByDateReverted = () => {
-    const sotrted = companies.sort((a, b) => {
-      if (a.interviewDate > b.interviewDate) {
-        return -1;
-      }
-    });
-    setCompaniesList(() => [...sotrted]);
-    setDateIsSorted(() => true);
-    setStatusIsSorted(() => true);
-    setCompanyIsSortedUp(() => true);
+    const sorted = sortDateFunc(companies, false);
+    setCompaniesList(() => [...sorted]);
+    dispatchSortedState({ type: dispatchActionTypes.DATE_SORTED_DOWN });
   };
 
   useEffect(() => {
     if (!companies) return;
     setCompaniesList(() => [...companies]);
   }, []);
+  console.log(sortedState);
+
+  const { companyIsSortedUp, statusIsSorted, dateIsSorted } = sortedState;
 
   return (
     <section className="table container section hscroll">
@@ -159,3 +179,7 @@ const CandidateReportsTable = ({ companies, onGetModalInfo }) => {
 };
 
 export default CandidateReportsTable;
+
+// const [companyIsSortedUp, setCompanyIsSortedUp] = useState(true);
+// const [dateIsSorted, setDateIsSorted] = useState(true);
+// const [statusIsSorted, setStatusIsSorted] = useState(true);

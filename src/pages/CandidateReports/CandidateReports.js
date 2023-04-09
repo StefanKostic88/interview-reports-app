@@ -67,11 +67,3 @@ const CandidateReports = () => {
 };
 
 export default CandidateReports;
-
-// const [candidateInfo, setCandidateInfo] = useState(null);
-// const [isOpen, setIsOpen] = useState(false);
-// const [modalInfo, setModalInfo] = useState({});
-// const closeModal = () => {
-//   setIsOpen(() => false);
-//   setModalInfo(() => ({}));
-// };

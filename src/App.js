@@ -57,8 +57,6 @@ const App = () => {
               }
             />
             <Route path={"*"} element={<ErrorPage />} />
-            {/* <Route path={"*"} element={<Root />}>
-            </Route> */}
           </Route>
         </Routes>
       )}
@@ -67,38 +65,3 @@ const App = () => {
 };
 
 export default App;
-
-// const [candidatesList, setCandidatesList] = useState([]);
-// const [isSubmited, setIsSubmited] = useState(false);
-// const [resetInputSignal, setResetInputSignal] = useState(false);
-
-// const registerSubmit = () => {
-//   setIsSubmited(() => true);
-// };
-// const getCandidates = async () => {
-//   const data = await fetchCandidatsData();
-
-//   const dataAddedFalseIsActive = data.map((el) => ({
-//     ...el,
-//     isActive: false,
-//   }));
-//   setCandidatesList(() => [...dataAddedFalseIsActive]);
-// };
-
-// const refresh = () => {
-//   setCandidatesList(() => []);
-//   getCandidates();
-//   setResetInputSignal(() => true);
-// };
-
-// useEffect(() => {
-//   getCandidates();
-// }, []);
-
-// useEffect(() => {
-//   getCandidates();
-//   setIsSubmited(() => false);
-// }, [isSubmited]);
-// useEffect(() => {
-//   setResetInputSignal(() => false);
-// }, [resetInputSignal]);

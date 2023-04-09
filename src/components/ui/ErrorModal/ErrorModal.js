@@ -1,12 +1,6 @@
 const ErrorModal = () => {
   return (
-    <div
-      style={{
-        display: "flex",
-        justifyContent: "center",
-        marginTop: "4rem",
-      }}
-    >
+    <div className="error-modal">
       <h2>No Information Available</h2>
     </div>
   );

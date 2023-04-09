@@ -33,11 +33,3 @@ const CandidateReportsTableBody = ({ companies, onGetModalInfo }) => {
 };
 
 export default CandidateReportsTableBody;
-
-{
-  /* <img
-                  src="./assets/img/eye-icon.svg"
-                  alt="eye icon"
-                  className="table-icon"
-                /> */
-}

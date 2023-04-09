@@ -1,7 +1,6 @@
 import { useNavigate } from "react-router";
 
-const CardItem = ({ id, email, name, avatar, animation }) => {
-  // console.log(animation);
+const CardItem = ({ id, email, name, avatar }) => {
   const navigate = useNavigate();
   return (
     <div
