@@ -15,7 +15,7 @@ import { fetchCandidatsData } from "./services/fetchData/fehtchData";
 import { useLocation } from "react-router";
 
 const App = () => {
-  const { pathname } = useLocation();
+  // const { pathname } = useLocation();
   const {
     list: candidatesList,
     resetInputSignal,
