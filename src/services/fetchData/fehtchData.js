@@ -158,3 +158,12 @@ export const deleteReports = async (id) => {
     },
   });
 };
+
+export const deleteCandidate = async (id) => {
+  await fetch(`http://localhost:3333/api/candidates/${id}`, {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+};
