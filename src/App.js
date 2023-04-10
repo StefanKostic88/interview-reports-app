@@ -39,7 +39,7 @@ const App = () => {
             />
             <Route
               path={"/candidate-reports/:id"}
-              element={<CandidateReports />}
+              element={<CandidateReports onRefresh={refresh} />}
             />
 
             <Route path={"/panel"} element={<AdministrativePanelReports />} />
