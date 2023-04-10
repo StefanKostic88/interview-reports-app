@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const OperationTwoCreateReport = ({
   newCompanies,
@@ -9,6 +9,26 @@ const OperationTwoCreateReport = ({
 }) => {
   const [comname, setComname] = useState("");
   const [chosenId, setChosenId] = useState(null);
+  const [companyListStyled, setCompanyListStyled] = useState([...newCompanies]);
+
+  const setActiveStatus = (id) => {
+    const updatedArr = companyListStyled.map((company) => {
+      if (company.id === id) {
+        return { ...company, isActive: true };
+      } else {
+        return { ...company, isActive: false };
+      }
+    });
+
+    setCompanyListStyled(() => [...updatedArr]);
+  };
+
+  useEffect(() => {
+    if (!newCompanies) return;
+    const style = newCompanies.map((el) => ({ ...el, isActive: false }));
+    setCompanyListStyled(() => [...style]);
+  }, [newCompanies]);
+
   if (!newCompanies) return;
 
   return (
@@ -33,7 +53,7 @@ const OperationTwoCreateReport = ({
         </form>
       </div>
       <div className="operations__card-list operations__select-company">
-        {newCompanies.map(({ name, id, isActive, candidateId }) => (
+        {companyListStyled.map(({ name, id, isActive, candidateId }) => (
           <div
             key={id}
             className={`operations__select-company-item ${
@@ -43,6 +63,7 @@ const OperationTwoCreateReport = ({
               onGetCompanyTest(name);
               setComname(name);
               setChosenId(() => id);
+              setActiveStatus(id);
             }}
             // onClick={() => {
             //   setBtnIsActive(() => true);

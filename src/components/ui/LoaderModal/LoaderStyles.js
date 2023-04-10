@@ -66,9 +66,9 @@ export const CubeNineStyled = styled(CubsStyled)`
 `;
 
 export const LoaderOuterContainerStyled = styled.div`
-  // background-color: red;
   flex: 1;
   display: flex;
   justify-self: center;
   align-items: center;
+  margin-top: 10rem;
 `;

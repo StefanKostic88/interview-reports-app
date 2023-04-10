@@ -54,6 +54,7 @@ const useAdministrativePanelSubmit = () => {
   };
 
   const generateNewReport = (companyID, companyName) => {
+    console.log(companyID);
     setActiveTab((prev) => prev + 1);
     setReport(() => ({
       companyId: companyID,
