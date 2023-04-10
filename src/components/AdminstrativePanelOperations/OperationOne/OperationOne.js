@@ -8,12 +8,21 @@ const OperationOne = ({
 }) => {
   const [btnIsActive, setBtnIsActive] = useState(false);
   const [chosenId, setChosenId] = useState(null);
-
   const [listStyled, setListStyled] = useState([]);
+  const [searchUser, setSearchUser] = useState("");
 
   useEffect(() => {
     setListStyled(() => [...candidatesList]);
   }, [candidatesList]);
+
+  const onChangeHandler = (e) => {
+    const filtered = candidatesList.filter((user) => {
+      return user.name.toLowerCase().startsWith(e.target.value.toLowerCase());
+    });
+
+    setSearchUser(() => e.target.value);
+    setListStyled(() => [...filtered]);
+  };
 
   const setActiveStyleStatus = (id) => {
     const newArr = listStyled.map((el) => {
@@ -39,6 +48,8 @@ const OperationOne = ({
               placeholder="Search..."
               className="search__form-input"
               id="contact-name"
+              onChange={onChangeHandler}
+              value={searchUser}
             />
           </div>
         </form>

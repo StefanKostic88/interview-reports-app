@@ -192,3 +192,18 @@ export const sortDateFunc = (arr, sortUp = true) => {
     });
   }
 };
+
+export const getDate = (date) => {
+  let day = +date.split(".")[0];
+  let month = +date.split(".")[1];
+  const year = +date.split(".")[2];
+
+  if (month.toString().length === 1) {
+    month = "0" + month;
+  }
+  if (day.toString().length === 1) {
+    day = "0" + day;
+  }
+
+  return `${year}-${month}-${day}`;
+};

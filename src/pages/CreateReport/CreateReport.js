@@ -2,6 +2,7 @@ import {
   MainContainer,
   AdminstrativePanelOperations,
   CreateForm,
+  UserCreatedMessage,
 } from "../../components";
 import {
   postUser,
@@ -11,8 +12,9 @@ import { generateUser } from "../../assets/heleperFunctions/heleperFunctions";
 
 import { useData } from "../../assets/helperData/createFormData";
 import { useEffect, useState } from "react";
-
+import { useNavigate } from "react-router";
 const CreateReport = ({ onRegistersubmit }) => {
+  const navigate = useNavigate();
   const {
     candidateName,
     candidateEmail,
@@ -30,6 +32,7 @@ const CreateReport = ({ onRegistersubmit }) => {
   } = useData();
 
   const [formIsValid, setFormIsValid] = useState(false);
+  const [userIsCrated, setUserIsCrated] = useState(false);
 
   const submitUser = (e) => {
     e.preventDefault();
@@ -52,6 +55,12 @@ const CreateReport = ({ onRegistersubmit }) => {
     onRegistersubmit();
     resetAllInputs();
     setFormIsValid(() => false);
+    setUserIsCrated(() => true);
+    const timer = setTimeout(() => {
+      setUserIsCrated(() => false);
+      navigate("/panel");
+      clearTimeout(timer);
+    }, 3000);
   };
 
   useEffect(() => {
@@ -84,6 +93,7 @@ const CreateReport = ({ onRegistersubmit }) => {
 
   return (
     <MainContainer>
+      {userIsCrated && <UserCreatedMessage msg={"User Created"} />}
       <section className="section container">
         <AdminstrativePanelOperations isCreating={false}>
           <div className="operations__content operations__content--3 operations__content--active">

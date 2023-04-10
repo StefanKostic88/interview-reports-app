@@ -14,7 +14,6 @@ const OperationThreeTemplate = ({
   status,
   note,
 }) => {
-  console.log(interviewDate);
   return (
     <div className="operations__content operations__content--3 operations__content--active">
       <div className="operations__select operations__select-search section__border">
@@ -41,7 +40,7 @@ const OperationThreeTemplate = ({
                 className="search__form-input"
                 id="date"
                 value={interviewDate}
-                // defaultValue={"2011-09-15"}
+                min={interviewDate}
                 onChange={interviewDateOnchangeHandler}
               />
             </div>

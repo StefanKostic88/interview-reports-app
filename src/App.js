@@ -1,4 +1,3 @@
-// import { useEffect, useState } from "react";
 import { Route, Routes } from "react-router";
 import {
   Root,
@@ -12,10 +11,8 @@ import {
 } from "./pages";
 import { useRootPage } from "./hooks";
 import { fetchCandidatsData } from "./services/fetchData/fehtchData";
-import { useLocation } from "react-router";
 
 const App = () => {
-  const { pathname } = useLocation();
   const {
     list: candidatesList,
     resetInputSignal,

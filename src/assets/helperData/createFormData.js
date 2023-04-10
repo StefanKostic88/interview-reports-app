@@ -1,6 +1,13 @@
 import useCreateForm from "../../hooks/use-create-form/useCreateForm";
+import { getDate } from "../heleperFunctions/heleperFunctions";
 
 export const useData = () => {
+  const date = new Date().toLocaleString("SR", {
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+  });
+
   const {
     inputVal: candidateName,
     valOnChangeHandler: candidateNameOnChangeHandler,
@@ -22,12 +29,12 @@ export const useData = () => {
     inputVal: candidateBirthDay,
     valOnChangeHandler: birthdayChangeHandler,
     resetVal: resetCandidateBirthday,
-  } = useCreateForm(() => "");
+  } = useCreateForm(() => getDate(date));
   const {
     inputVal: interviewDate,
     valOnChangeHandler: interviewDateOnChangeHandler,
     resetVal: resetInterviewDate,
-  } = useCreateForm(() => "");
+  } = useCreateForm(() => getDate(date));
 
   const {
     inputVal: candidatePhase,

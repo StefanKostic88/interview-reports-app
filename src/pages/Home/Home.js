@@ -16,7 +16,7 @@ const Home = ({ candidatesList, onResetInput }) => {
 
   return (
     <MainContainer>
-      <section className="container section section__border" id="home">
+      <section className="container section " id="home">
         <SearchHeader
           onFilterCandidate={filterCandidate}
           onResetInput={onResetInput}
@@ -36,3 +36,5 @@ const Home = ({ candidatesList, onResetInput }) => {
 };
 
 export default Home;
+
+// section__border

@@ -52,7 +52,9 @@ const CandidateReports = () => {
         {...{ id, email, name, avatar, birthday, education }}
       />
       {companies.length === 0 ? (
-        <div>No companies data available</div>
+        <h2 className="table container section hscroll">
+          No companies data available
+        </h2>
       ) : (
         <CandidateReportsTable
           companies={companies}

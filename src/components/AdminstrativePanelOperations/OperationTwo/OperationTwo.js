@@ -37,19 +37,6 @@ const OperationTwo = ({
           <p>Candidate:</p>
           <h3>{candidateName}</h3>
         </div>
-        <form action="" className="search__form" id="contact-form">
-          <div className="search__form-div">
-            <label className="search__form-tag">Search</label>
-            <input
-              type="text"
-              name="user_name"
-              required
-              placeholder="Search..."
-              className="search__form-input"
-              id="contact-name"
-            />
-          </div>
-        </form>
       </div>
       <div className="operations__card-list operations__select-company">
         {companyListStyled.map(({ companyName, companyId, isActive, id }) => (

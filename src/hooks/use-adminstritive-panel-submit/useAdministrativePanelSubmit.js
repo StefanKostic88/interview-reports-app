@@ -9,6 +9,8 @@ const useAdministrativePanelSubmit = () => {
   const [report, setReport] = useState({});
   const [isCreating, setIsCreating] = useState(false);
   const [newCompanies, setNewCompanies] = useState([]);
+  const [reportMsg, setReportMsg] = useState("");
+  const [showMsgIsVisible, setShowMsgIsVisible] = useState(false);
 
   const generateCompanyList = async (id) => {
     const list = await fetchCompaniesDataUnsliced(id);
@@ -52,6 +54,7 @@ const useAdministrativePanelSubmit = () => {
   };
 
   const generateNewReport = (companyID, companyName) => {
+    console.log(companyID);
     setActiveTab((prev) => prev + 1);
     setReport(() => ({
       companyId: companyID,
@@ -88,6 +91,16 @@ const useAdministrativePanelSubmit = () => {
     setIsCreating(() => true);
     filterNewCompanies(companyList);
   };
+
+  const getSubmitMsg = (str) => {
+    setShowMsgIsVisible(() => true);
+    setReportMsg(() => str);
+    const timer = setTimeout(() => {
+      setShowMsgIsVisible(() => false);
+      setReportMsg(() => "");
+      clearTimeout(timer);
+    }, 3000);
+  };
   return {
     candidateId,
     activeTab,
@@ -106,6 +119,9 @@ const useAdministrativePanelSubmit = () => {
     backToSecond,
     resetSteper,
     createNewReport,
+    getSubmitMsg,
+    reportMsg,
+    showMsgIsVisible,
   };
 };
 export default useAdministrativePanelSubmit;

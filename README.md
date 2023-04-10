@@ -1,70 +1,24 @@
-# Getting Started with Create React App
+iNTERVIEW-REPORTS-APP
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+BIT - Final Project
 
-## Available Scripts
+Simple App using CRUD principles
 
-In the project directory, you can run:
+Main Goal is to track interview reports of the candidates such as: Company, Interview date, and status of the interview.
 
-### `npm start`
+Also, you can add new candidates, create new reports for allreadey existing candidates, edit and update existing reports, and finaly delete reports.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+App utilise reactr reouter as a MPA
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Component state is managed via useState, useReducer and useEffect hooks, which are stored in custom hooks for each component.
 
-### `npm test`
+Home Page > Render initaial Candidates, you can select specific candidate by his unique id, which opens info for this particular candidate in a new window. Also, if you want additional info about candidate, there is a Modal window, which can be viewed by simply clciking a eye icon. There is also possibility to sort reports of the candidate: by company, date and status.
+You can search candidate by name, after 300ms timer fires off and you can filter candidates by name. If no info is available, erro message is shown.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Panel > renders all reports, You can filter reports by, company name or candidate name. You can delete individual report by clicking the X icon, and you cen view Candidate reports by clicking eye icon, which opens modal window.
 
-### `npm run build`
+Here you can click Create new User which creates new user and first report for that user, you can also edit reports of the user, and even add a new report for allready existing user.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+After subbmit, message is shown to inform you that the submit was succesfull, and that message desapeares after 3 seconds.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+If you choose a rout that doesnt exist, Error window is shown, which redirects you to home page.
