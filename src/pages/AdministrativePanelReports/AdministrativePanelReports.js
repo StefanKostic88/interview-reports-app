@@ -34,7 +34,7 @@ const AdministrativePanelReports = () => {
             onSubmitHandler={onSubmitHandler}
             onChangeHandler={onChangeHandler}
             value={search}
-            label={"Search"}
+            label={"Search Candidate's Full Name"}
           />
 
           <button className="btn" onClick={() => navigate("/panel/create")}>

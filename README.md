@@ -22,3 +22,15 @@ Here you can click Create new User which creates new user and first report for t
 After subbmit, message is shown to inform you that the submit was succesfull, and that message desapeares after 3 seconds.
 
 If you choose a rout that doesnt exist, Error window is shown, which redirects you to home page.
+
+Set up instructions:
+git clone https://github.com/nenadbugaric/interviews-reports-api-mock/
+git checkout auth-client
+npm install
+npm start
+This will run on http://localhost:3333
+
+For the project
+git clone https://github.com/StefanKostic88/interview-reports-app.git
+npm install
+npm start
